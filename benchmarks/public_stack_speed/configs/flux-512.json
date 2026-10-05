@@ -1,0 +1,11 @@
+{
+  "model": "flux2-klein-4b-distilled",
+  "device": "cuda",
+  "prompt": "A red cube on a white table.",
+  "height": 512,
+  "width": 512,
+  "steps": 4,
+  "repeats": 3,
+  "output_root": "/mnt/hdd8tb/mrun-pub/speeds",
+  "timeout_s": 840
+}

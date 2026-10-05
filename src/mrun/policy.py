@@ -76,6 +76,12 @@ QWEN3_MOE_KV_BYTES_PER_TOKEN_PER_STREAM = 48 * 2 * 4 * 128 * 2
 # and logits, while also charging the activation envelope. This is deliberately much smaller
 # than a resident model estimate and is refined by exact run history after the first execution.
 PAGED_CUDA_MIN_WORKING_SET_MB = 2_048.0
+# NVML charges the CUDA process/context above tensor bytes. Installed public
+# Torch 2.13/CUDA 13 Qwen0.5 BF16 startup job-b8317b2a5809 reached 1,266MB
+# against a 1,014.9MB tensor estimate before its first forward. Reserve 512MB
+# (over twice that observed excess) before fit/admission; live guards and
+# exact-history sizing still refine the workload-specific envelope.
+CUDA_HF_PROCESS_OVERHEAD_MB = 512.0
 
 
 def _auto_paged_backend(model: str, host: HostCaps) -> str:
@@ -881,6 +887,9 @@ def plan_run(
     # compatible paged profile instead of silently keeping HF and moving it to CPU. Explicit
     # backend choices remain explicit; the auto policy is the safety boundary.
     est_vram_mb = float(mem.weights_mb) + act_mb if device == "cuda" else 0.0
+    if backend == "hf" and device == "cuda":
+        est_vram_mb += CUDA_HF_PROCESS_OVERHEAD_MB
+        reasons.append(f"CUDA HF process/context allowance={CUDA_HF_PROCESS_OVERHEAD_MB:.0f}MB (NVML beyond tensor bytes)")
     if _is_qwen3_moe_cuda_backend(backend):
         est_vram_mb = qwen_resident_mb + qwen_kv_mb
         if host.vram_mb:

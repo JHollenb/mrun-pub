@@ -5,7 +5,7 @@ No fleet services were refreshed and no model weights were downloaded for qualif
 
 | Check | Result |
 | --- | --- |
-| mrun CPU and synthetic scheduler regression suite | 1,992 passed; 151 hardware/model tests skipped |
+| mrun 0.1.1 CPU and synthetic scheduler regression suite | 2,010 passed; 151 hardware/model tests skipped |
 | MDB full development suite using the public runner | 212 passed; 5 skipped before the added public-boundary tests |
 | MDB public payload/API regression checks | 12 passed |
 | MDB installed-wheel consumer suite outside both source repositories | 132 passed; 5 skipped |
@@ -25,7 +25,22 @@ RAM containment, admission, concurrent leases, cancellation, logs and learned si
 Synthetic scheduler telemetry is deliberately stable; dedicated tests cover pressure
 and resource refusal. The production guards retain actual host telemetry.
 
-New hardware benchmark certification remains separate. CUDA/Triton, MLX, ANE and
-real-checkpoint tests require their explicit devices, extras and opt-in. Historical
+Installed-package hardware qualification is recorded separately in
+[SPEEDS.md](SPEEDS.md) and its sealed evidence. This runs the public client and
+public mrun/MDB/Saturn worker wheels through an existing compatible fleet; fleet
+scheduler/agent services were not refreshed. Version 0.1.1's CUDA process allowance
+is calibrated from an actual guarded startup failure; guard limits remain active.
+The post-extraction regression lane has 95 passing policy, submit, import-boundary
+and hostile-evidence checks, plus four passing phase cache/close checks. Release
+archives and independent installed-wheel execution pass. Raw hardware timings,
+replay, source audits and stopped attempts have their own receipts.
+The hardware matrix completed nine jobs and 29 configurations across Qwen, Mamba,
+FLUX and SDXL. Both image families' MDB outputs match their native RGB bytes;
+all applicable same-lane repeat/replay/abort/no-op and byte-custody checks pass.
+MDB's evidence pipeline verifies the retained receipts with no drift or broken
+chains. See the [compact qualification record](../benchmarks/public_stack_speed/qualification.json).
+
+CUDA/Triton, MLX, ANE and additional real-checkpoint tests require their explicit
+devices, extras and opt-in. Historical
 promotion receipts are not transferred to this distribution. Source identity changes
 can correctly refuse an old cut or promotion even when the numerical program is preserved.

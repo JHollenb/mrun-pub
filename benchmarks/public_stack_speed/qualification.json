@@ -1,0 +1,82 @@
+{
+  "evidence_pipeline": {
+    "run": {
+      "broken": false,
+      "exit_code": 0,
+      "findings": 0,
+      "instrument_status": "target-streams-and-receipts",
+      "raw_receipt_sha256": "70c1b348f06b4327f04f9bca82ce1c324493da037460506d4afec0f3cf1c9b9a",
+      "step_statuses": {
+        "claims": "ok",
+        "target_scope": "ok",
+        "watch": "ok",
+        "xref": "ok"
+      }
+    },
+    "verify": {
+      "broken": false,
+      "claims_current": 11,
+      "claims_drifted": 0,
+      "claims_missing": 0,
+      "exit_code": 0,
+      "findings": 0,
+      "instrument_status": "target-streams-and-receipts",
+      "raw_receipt_sha256": "24f20649d01e30721f38c1590ae3c1c1c7dca0687b638598ce892a7bd4b6515b",
+      "step_statuses": {
+        "claims": "ok",
+        "target_scope": "ok",
+        "watch": "ok"
+      }
+    }
+  },
+  "hardware_jobs": 9,
+  "models": [
+    "flux2-klein-4b-distilled",
+    "illustrious-xl",
+    "mamba-130m",
+    "mamba-370m",
+    "qwen2.5-0.5b-instruct",
+    "qwen2.5-1.5b"
+  ],
+  "raw_report_sha256": {
+    "job-325c034b343e": "e16262b1706cb01c62de21928e1c35f4cf87214ecf5d1d69fa696d19a42a15d7",
+    "job-36a7996a7379": "bfd958d0d331709e3c64918050676257707f82365eec77b8d78b4a90bbd5cbee",
+    "job-5fc2939bc35d": "d313d3eb038b2c6a17469e463b1592b9b4f61cee532983e45f0be2c06ea41f86",
+    "job-793611bcfe4b": "e1904743a009221b5e28622cc595c183de0908a763b8afe3d65db6e5f5de411c",
+    "job-88b201d92f11": "1676ca6c62d087747b5e7fd08cfd9f4d407fea464af9e53e3bd98b8d4761efb3",
+    "job-a925139b2a2f": "effd7956c8a76f911eb9a896c4d7773611699d1f4b245bc709a5e9ee2b407153",
+    "job-cbf0ac175535": "b4cba9d2d1aedcc3d4f470e38c4c0dd69bafc3d3b6b2dbdf5caffac895928d7f",
+    "job-d18f0a58d8ce": "97e6557e57b9493e73a47e823d43b21a7223cc337ab034940747c21ede1bbcff",
+    "job-f5c45ae7e8ff": "5335422d89b0c0395ec8f43e0f39bf09df9bb3be8bcd399e04fdeeabd3603a8a"
+  },
+  "regressions": {
+    "cpu_synthetic": {
+      "passed": 2010,
+      "skipped": 151
+    },
+    "focused_policy_submission_boundary_evidence": {
+      "passed": 95
+    },
+    "phase_cache_close": {
+      "passed": 4
+    }
+  },
+  "release_mrun_runtime_files": {
+    "count": 224,
+    "matched_measured_payload": true
+  },
+  "schema": "mrun-public-stack-qualification-v1",
+  "scope": "Sealed public client and worker packages on an existing compatible fleet; finite short timing and runtime/custody integration. No fleet service deployment, sustained-serving or model-quality claim.",
+  "source_and_timing_checks": {
+    "job-325c034b343e": true,
+    "job-36a7996a7379": true,
+    "job-5fc2939bc35d": true,
+    "job-793611bcfe4b": true,
+    "job-88b201d92f11": true,
+    "job-a925139b2a2f": true,
+    "job-cbf0ac175535": true,
+    "job-d18f0a58d8ce": true,
+    "job-f5c45ae7e8ff": true
+  },
+  "timing_configurations": 29
+}

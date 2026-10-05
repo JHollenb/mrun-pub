@@ -18,3 +18,16 @@ controllers and analysis dependencies are not included.
 No model weights, downloaded third-party model source snapshots, private Git history,
 credentials or historical promotion evidence are bundled. Runtime-generated artifacts
 must preserve the licenses and identities of their source models. See NOTICE.
+
+## Post-extraction hardware qualification, 2026-10-05
+
+Version 0.1.1 adds an HF CUDA process/context allowance to the planning envelope.
+An installed public-stack pilot was killed during loading because NVML charged
+1,266 MB against a tensor-only 1,014.9 MB estimate. The 512 MB allowance is applied
+before fit/admission; resource guards remain active. A corrected pilot completes
+at 1,340 reported MB. This changes sizing policy, not numerical model execution.
+
+The standalone benchmark and compact public evidence use freshly sealed installed
+mrun, MDB and Saturn packages. See [measured speeds](docs/SPEEDS.md) and the
+[protocol](benchmarks/public_stack_speed/README.md). Failed pilots remain retained;
+input extraction hashes and earlier qualification records are unchanged.

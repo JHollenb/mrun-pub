@@ -1,0 +1,11 @@
+{
+  "model": "qwen2.5-0.5b-instruct",
+  "device": "cpu",
+  "dtype": "float32",
+  "prompt": "The capital of France is",
+  "tokens": 8,
+  "repeats": 3,
+  "saturn_residencies": ["resident"],
+  "output_root": "/mnt/hdd8tb/mrun-pub/speeds",
+  "timeout_s": 840
+}

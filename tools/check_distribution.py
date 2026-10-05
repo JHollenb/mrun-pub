@@ -34,7 +34,11 @@ def check_member(name: str, raw: bytes) -> None:
                 modules = [a.name for a in node.names]
             elif isinstance(node, ast.ImportFrom):
                 modules = [node.module or ""]
-            assert not any(m.split(".")[0] in FORBIDDEN_IMPORTS for m in modules), name
+            # The standalone benchmark is a consumer of public Saturn/MDB.
+            # This never permits a runtime dependency from the mrun package.
+            consumer_benchmark = "benchmarks" in path.parts and "mrun" not in path.parts
+            forbidden = FORBIDDEN_IMPORTS - ({"saturn_pub"} if consumer_benchmark else set())
+            assert not any(m.split(".")[0] in forbidden for m in modules), name
 
 
 def main() -> None:

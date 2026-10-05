@@ -30,7 +30,7 @@ from .orchestrate import StageRun, run_stage
 from .policy import HostCaps, RunPlan, engine_from_plan, plan_run
 from .resources import ResourceMonitor, require_free_space
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 def __getattr__(name):

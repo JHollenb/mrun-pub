@@ -1,0 +1,55 @@
+{
+  "findings": [
+    {
+      "finding": "Failed or mismatched reports could enter timing tables",
+      "resolution": "Require exact job/payload/source/config/plan binding, complete requested rows, raw sample/median consistency and applicable replay/custody contracts."
+    },
+    {
+      "finding": "Native/MDB full-readout hashing and Saturn token-only timing have different boundaries",
+      "resolution": "Document each timed boundary separately; retain native byte/token agreement separately from same-lane replay."
+    },
+    {
+      "finding": "Qwen-only descriptor field assumed for Mamba and diffusion",
+      "resolution": "Use registry_name fallback and add Mamba/phase report fixtures; retain failed pre-timing worker."
+    },
+    {
+      "finding": "Historical checkpoint audit could target a different SSH host",
+      "resolution": "Require assigned/admitted host equality, record separate post-job checkpoint-byte and CPU identity audits; preserve raw reports."
+    }
+  ],
+  "hardware_review": {
+    "job_id": "job-793611bcfe4b",
+    "release_mrun_package_files_match_measured_seal": 224,
+    "result": "No material timing or custody blocker; exact native RGB bytes, repeats, partial replay and abort; journal no-op; all source/timing checks true.",
+    "scope": "Warm batch-one 512px/four-step timing and integration; no quality or sustained-serving claim."
+  },
+  "post_review_corrections": [
+    {
+      "finding": "Native image phase wrapper owns detached encoders until close",
+      "resolution": "Close the wrapper outside timing before MDB takes pipeline ownership; existing cache/close regression checks pass; failed hardware attempt retained."
+    },
+    {
+      "finding": "Native image warm repeats reuse cached conditioning",
+      "resolution": "Document conditioning cache lookup versus first MDB preparation; retain distinct timing boundaries."
+    },
+    {
+      "finding": "Result publication exclusion was ambiguous about MDB durable cuts",
+      "resolution": "Exclude only final benchmark report/log emission; explicitly include MDB durable cut publication and output hashing in the declared timed scopes."
+    },
+    {
+      "finding": "Generic session setup exclusion could contradict the Saturn timing scope",
+      "resolution": "Name adapter construction as excluded; explicitly retain Saturn session creation/prompt execution inside timed calls, and MDB session construction/preparation/restore outside its prepared suffix."
+    }
+  ],
+  "resolved_source_hashes": {
+    "benchmarks/public_stack_speed/audit.py": "2dd42fda776524a3c7f8b2b75219abf49bcece262ad8d60a8cf7d131aeb654e9",
+    "benchmarks/public_stack_speed/collect.py": "6eb5b10b20f7e24aa7189b5bb47561093bd1c6a32fb2c7601988900e146e3630",
+    "benchmarks/public_stack_speed/summarize.py": "94e727b4488d6a57531eb8d2bc07d01c80699fe3f7178eee8fe615c303212d41",
+    "benchmarks/public_stack_speed/worker.py": "c4575c1c2ca5a5e4a4900a99c4f5f622ba131a2e24e77e1367a13adedf58ca7e",
+    "src/mrun/policy.py": "3036537a4197f309c542c08f7e618cbbfa60affdceaf8646bd846d0456db1ea9",
+    "tests/test_public_speed_evidence.py": "840d3e22cc85696c7c20ea88efe1633920b3dbc37c46c9021dba9deb553ae306"
+  },
+  "review_boundary": "Bounded execution/publication correctness; no semantic circuit or quality certification",
+  "review_scope": "Independent read-only experiment/configuration review; no accelerator work delegated",
+  "schema": "mrun-public-speed-review-resolution-v1"
+}

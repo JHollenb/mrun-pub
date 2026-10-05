@@ -1,0 +1,19 @@
+{
+  "model": "qwen2.5-0.5b-instruct",
+  "device": "cuda",
+  "dtype": "float32",
+  "prompt": "The capital of France is",
+  "tokens": 8,
+  "repeats": 3,
+  "saturn_residencies": ["resident", "streamed"],
+  "resource_profile": {"ram_mb": 5120, "vram_mb": 3584, "disk_gb": 1, "cpu_threads": 4},
+  "resource_basis": {
+    "source_job": "job-52d87e6f3c1a",
+    "peak_rss_reported_mb": 3765.2,
+    "peak_vram_reported_mb": 2364,
+    "formula": "ceil512(observed peak * 1.3)",
+    "scope": "same checkpoint, FP32, eight tokens, resident then host-weight streaming"
+  },
+  "output_root": "/mnt/hdd8tb/mrun-pub/speeds",
+  "timeout_s": 840
+}

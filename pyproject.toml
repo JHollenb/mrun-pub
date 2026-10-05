@@ -1,6 +1,6 @@
 [project]
 name = "mrun-pub"
-version = "0.1.0"
+version = "0.1.1"
 description = "Portable model execution, bounded-memory runtimes, and guarded fleet scheduling."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -35,7 +35,7 @@ packages = ["src/mrun"]
 artifacts = ["src/mrun/server/static/**"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/tools", "/scripts", "/examples", "/docs", "/deploy", "/README.md", "/AGENTS.md", "/LICENSE", "/NOTICE", "/PROVENANCE.md", "/SOURCE-SNAPSHOT.json", "/pyproject.toml"]
+include = ["/src", "/tests", "/tools", "/scripts", "/examples", "/benchmarks", "/docs", "/deploy", "/README.md", "/AGENTS.md", "/LICENSE", "/NOTICE", "/PROVENANCE.md", "/SOURCE-SNAPSHOT.json", "/pyproject.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

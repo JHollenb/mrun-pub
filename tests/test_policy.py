@@ -76,6 +76,22 @@ def test_small_model_fits_vram_stays_cuda():
     assert 0 < plan.est_vram_mb < BEAST.vram_mb
 
 
+def test_hf_cuda_plan_charges_nvml_process_context(monkeypatch):
+    from mrun import policy
+
+    monkeypatch.setenv("GATHER_MAX_BATCH", "1")
+    monkeypatch.setattr(policy, "estimate_activation_mb", lambda *args, **kwargs: 14.9)
+    plan = plan_run("qwen2.5-0.5b", host=BEAST, backend="hf", dtype="bfloat16",
+                    device="cuda", seq_lens=[64])
+    # Replay the observed startup requirement rather than merely checking the
+    # implementation's arithmetic: tensor-only admission killed this valid load.
+    assert plan.est_vram_mb * 1.1 > 1_266
+    assert any("process/context allowance" in reason for reason in plan.reasons)
+    cpu = plan_run("qwen2.5-0.5b", host=BEAST, backend="hf", dtype="bfloat16",
+                   device="cpu", seq_lens=[64])
+    assert cpu.est_vram_mb == 0
+
+
 def test_mac_fp32_env_opt_out(monkeypatch):
     monkeypatch.setenv("MRUN_TORCH_DTYPE", "fp32")
     assert plan_run("qwen2.5-0.5b", host=MAC).dtype == "float32"

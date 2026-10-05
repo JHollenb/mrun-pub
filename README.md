@@ -14,7 +14,7 @@ Python 3.10+; Linux and macOS.
 Public Git installation (no SSH access required):
 
 ```sh
-python -m pip install 'mrun-pub[runtime] @ git+https://github.com/JHollenb/mrun-pub.git@v0.1.0'
+python -m pip install 'mrun-pub[runtime] @ git+https://github.com/JHollenb/mrun-pub.git@v0.1.1'
 ```
 
 Or install selected extras from a local checkout:
@@ -81,6 +81,10 @@ local toolkit and MDB runtime. MDB's optional execution and diffusion integratio
 consume `mrun-pub`. One outer worker lease owns admission and physical containment;
 captures, sibling branches, intervention decisions, and replay stay inside the worker.
 See [the integration contract](docs/SATURN-MDB.md).
+
+Installed-package experiments and measured speeds for Qwen, Mamba, FLUX and SDXL
+are in [SPEEDS.md](docs/SPEEDS.md), with configuration files and a reproducible
+[benchmark harness](benchmarks/public_stack_speed/README.md).
 
 ## Development
 

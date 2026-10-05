@@ -1,0 +1,12 @@
+{
+  "model": "mamba-130m",
+  "device": "cuda",
+  "dtype": "float32",
+  "prompt": "The capital of France is",
+  "tokens": 1,
+  "repeats": 3,
+  "mdb_publications": ["legacy"],
+  "saturn_residencies": [],
+  "output_root": "/mnt/hdd8tb/mrun-pub/speeds",
+  "timeout_s": 840
+}

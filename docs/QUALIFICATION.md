@@ -47,6 +47,8 @@ the same CPU convolution backend on both sides; exact assertions remain intact.
 The history-calibration fixture waits through an RSS sampling tick. These changes
 preserve runtime kernels, numerical model programs and admission guards. The
 hardware reports remain bound to their original sealed 0.1.1 payloads.
+The selected-head screening oracle projects the declared aligned head block
+before selecting columns, preserving its exact full-vocabulary parity contract.
 The 0.1.2 release archives and isolated installed-server execution also pass;
 the compatibility helper was checked with an actual Python 3.10 interpreter.
 

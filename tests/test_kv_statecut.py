@@ -398,10 +398,13 @@ def test_selected_row_screening_reuses_one_suffix_and_batches_program_axis() -> 
         device_scratch_budget_bytes=1024,
     )
 
+    # Screening projects aligned head blocks, matching full-vocabulary
+    # adjudication. A three-column GEMM can round differently from that block.
+    assert screening.memory.head_row_chunk_size == engine.store.cfg["vocab_size"]
     expected = _row_stable_projection(
         continuation.batched_outputs,
-        engine.store.head.index_select(0, torch.tensor([7, 1, 4])),
-    )
+        engine.store.head,
+    ).index_select(-1, torch.tensor([7, 1, 4]))
     torch.testing.assert_close(screening.scores, expected, rtol=0, atol=0)
     assert screening.scores.shape == (2, 2, 3)
     assert not screening.global_argmax_established

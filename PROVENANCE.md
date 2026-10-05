@@ -38,3 +38,6 @@ instantaneous history-calibration process that could miss every RSS sample.
 Tests now bind one CPU oracle backend and keep the calibration process alive
 through a sampling tick. Exact assertions, page quarantine, runtime kernels,
 numerical model programs and the immutable 0.1.1 hardware evidence are preserved.
+The selected-head screening test now uses the declared aligned projection block
+before selecting columns, matching its existing full-vocabulary contract. CI
+collects every supported interpreter's result even if another lane fails.

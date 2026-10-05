@@ -31,20 +31,26 @@ def test_dirty_tiled_decode_reuses_untouched_output() -> None:
     old_latents = torch.randn(1, 2, 16, 16)
     new_latents = old_latents.clone()
     new_latents[:, :, 2, 2] += 0.75
-    previous = decoder(old_latents)
-    expected = decoder(new_latents)
     changed = torch.zeros(16, 16, dtype=torch.bool)
     changed[2, 2] = True
-    dirty = decode_dirty_tiled(
-        decoder,
-        new_latents,
-        previous,
-        changed,
-        tile_height=8,
-        tile_width=8,
-        halo=1,
-    )
+    # Full and expanded-tile shapes must use the same CPU oracle backend;
+    # oneDNN's shape-specific reduction order is not a byte-parity oracle.
+    with torch.backends.mkldnn.flags(enabled=False):
+        previous = decoder(old_latents)
+        expected = decoder(new_latents)
+        dirty = decode_dirty_tiled(
+            decoder,
+            new_latents,
+            previous,
+            changed,
+            tile_height=8,
+            tile_width=8,
+            halo=1,
+        )
     assert torch.equal(dirty.output, expected)
+    untouched = torch.ones_like(changed)
+    untouched[:8, :8] = False
+    assert torch.equal(dirty.output[..., untouched], previous[..., untouched])
     assert dirty.telemetry["dirty_tile_count"] == 1
     assert dirty.telemetry["tile_count"] == 4
 

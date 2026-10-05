@@ -31,3 +31,10 @@ The standalone benchmark and compact public evidence use freshly sealed installe
 mrun, MDB and Saturn packages. See [measured speeds](docs/SPEEDS.md) and the
 [protocol](benchmarks/public_stack_speed/README.md). Failed pilots remain retained;
 input extraction hashes and earlier qualification records are unchanged.
+
+Version 0.1.2 preserves cleanup exception notes on Python 3.10. Linux CI also
+exposed shape-dependent oneDNN rounding in two byte-parity test oracles and an
+instantaneous history-calibration process that could miss every RSS sample.
+Tests now bind one CPU oracle backend and keep the calibration process alive
+through a sampling tick. Exact assertions, page quarantine, runtime kernels,
+numerical model programs and the immutable 0.1.1 hardware evidence are preserved.

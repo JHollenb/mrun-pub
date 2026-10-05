@@ -23,6 +23,8 @@ from dataclasses import dataclass, replace
 from typing import Any
 from uuid import uuid4
 
+from .._compat import add_exception_note
+
 from .contracts import (
     BackendCapabilities,
     BlobIdentity,
@@ -1225,7 +1227,8 @@ class MlxComponentExecutionBackend(_BoundBackendBase):
                 try:
                     pool.close()
                 except BaseException as cleanup_error:
-                    operation_error.add_note(
+                    add_exception_note(
+                        operation_error,
                         f"paged MLX K/V pool cleanup also failed: {cleanup_error}"
                     )
             raise

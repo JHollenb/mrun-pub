@@ -21,6 +21,8 @@ from dataclasses import dataclass
 from typing import Any
 from uuid import uuid4
 
+from .._compat import add_exception_note
+
 MLX_PAGED_KV_CACHE_ABI = "mrun-mlx-block-paged-bf16-kv-v1"
 
 
@@ -437,7 +439,8 @@ class MlxKVPagePool:
         try:
             self._eval_pages_unlocked(pages)
         except BaseException as cleanup_error:
-            operation_error.add_note(
+            add_exception_note(
+                operation_error,
                 "unpublished MLX pages were quarantined after device evaluation failed: "
                 f"{cleanup_error}"
             )
@@ -447,7 +450,8 @@ class MlxKVPagePool:
             try:
                 self._release_unlocked(authority)
             except BaseException as cleanup_error:
-                operation_error.add_note(
+                add_exception_note(
+                    operation_error,
                     "unpublished MLX page release failed; quarantine was attempted: "
                     f"{cleanup_error}"
                 )
@@ -462,14 +466,15 @@ class MlxKVPagePool:
             try:
                 slot = self._validate_authority_unlocked(authority)
             except BaseException as quarantine_error:
-                operation_error.add_note(
+                add_exception_note(
+                    operation_error,
                     "failed MLX page could not be entered in the quarantine ledger: "
                     f"{quarantine_error}"
                 )
                 continue
             existing = self._quarantined.get(slot)
             if existing is not None and existing != authority:
-                operation_error.add_note("MLX quarantine ledger contains a conflicting authority")
+                add_exception_note(operation_error, "MLX quarantine ledger contains a conflicting authority")
                 continue
             self._quarantined[slot] = authority
 
@@ -956,7 +961,8 @@ class FixedMlxPagedKVCache:
                         pool._publish_cache_unlocked(self._cache_id, old_pages)  # noqa: SLF001
                         rollback_succeeded = True
                     except BaseException as rollback_error:
-                        operation_error.add_note(
+                        add_exception_note(
+                            operation_error,
                             f"MLX page-table publication could not be rolled back: {rollback_error}"
                         )
                 if rollback_succeeded:
@@ -1108,7 +1114,8 @@ class FixedMlxPagedKVCache:
                         pool._publish_cache_unlocked(self._cache_id, ())  # noqa: SLF001
                         rollback_succeeded = True
                     except BaseException as rollback_error:
-                        operation_error.add_note(
+                        add_exception_note(
+                            operation_error,
                             "fork page-table publication could not be rolled back: "
                             f"{rollback_error}"
                         )
@@ -1121,7 +1128,8 @@ class FixedMlxPagedKVCache:
                         try:
                             pool._release_unlocked(authority)  # noqa: SLF001
                         except BaseException as cleanup_error:
-                            operation_error.add_note(
+                            add_exception_note(
+                                operation_error,
                                 "retained fork page release failed and the pool is "
                                 f"unreconciled: {cleanup_error}"
                             )
@@ -1234,7 +1242,8 @@ class MlxPagedKVCacheFactory:
                     try:
                         cache.release()
                     except BaseException as cleanup_error:
-                        operation_error.add_note(
+                        add_exception_note(
+                            operation_error,
                             f"paged cache factory cleanup also failed: {cleanup_error}"
                         )
                 raise

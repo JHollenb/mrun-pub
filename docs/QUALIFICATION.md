@@ -6,6 +6,7 @@ No fleet services were refreshed and no model weights were downloaded for qualif
 | Check | Result |
 | --- | --- |
 | mrun 0.1.1 CPU and synthetic scheduler regression suite | 2,010 passed; 151 hardware/model tests skipped |
+| mrun 0.1.2 CPU and synthetic scheduler regression suite | 2,012 passed; 151 hardware/model tests skipped |
 | MDB full development suite using the public runner | 212 passed; 5 skipped before the added public-boundary tests |
 | MDB public payload/API regression checks | 12 passed |
 | MDB installed-wheel consumer suite outside both source repositories | 132 passed; 5 skipped |
@@ -39,6 +40,15 @@ FLUX and SDXL. Both image families' MDB outputs match their native RGB bytes;
 all applicable same-lane repeat/replay/abort/no-op and byte-custody checks pass.
 MDB's evidence pipeline verifies the retained receipts with no drift or broken
 chains. See the [compact qualification record](../benchmarks/public_stack_speed/qualification.json).
+
+Version 0.1.2 adds Python 3.10 cleanup-note compatibility after Linux CI exposed
+an unavailable `BaseException.add_note` call. Byte-parity test oracles now bind
+the same CPU convolution backend on both sides; exact assertions remain intact.
+The history-calibration fixture waits through an RSS sampling tick. These changes
+preserve runtime kernels, numerical model programs and admission guards. The
+hardware reports remain bound to their original sealed 0.1.1 payloads.
+The 0.1.2 release archives and isolated installed-server execution also pass;
+the compatibility helper was checked with an actual Python 3.10 interpreter.
 
 CUDA/Triton, MLX, ANE and additional real-checkpoint tests require their explicit
 devices, extras and opt-in. Historical

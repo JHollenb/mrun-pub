@@ -193,14 +193,16 @@ def test_mamba_reference_matches_transformers_full_sequence(tmp_path: Path) -> N
     model.eval()
     tokens = torch.tensor([[1, 4, 7, 2, 9], [3, 5, 8, 13, 0]], dtype=torch.int64)
 
-    with torch.inference_mode():
+    # Compare one CPU oracle backend: oneDNN may choose a different reduction
+    # order for the source and reference convolution layouts on Linux.
+    with torch.inference_mode(), torch.backends.mkldnn.flags(enabled=False):
         expected = model(
             input_ids=tokens,
             use_cache=False,
             output_hidden_states=True,
             return_dict=True,
         )
-    actual = executable.forward(tokens)
+        actual = executable.forward(tokens)
 
     torch.testing.assert_close(actual.logits, expected.logits, rtol=0.0, atol=0.0)
     torch.testing.assert_close(

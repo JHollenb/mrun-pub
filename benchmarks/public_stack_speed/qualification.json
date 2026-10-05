@@ -63,7 +63,8 @@
   },
   "release_mrun_runtime_files": {
     "count": 224,
-    "matched_measured_payload": true
+    "matched_measured_payload": true,
+    "version": "0.1.1"
   },
   "schema": "mrun-public-stack-qualification-v1",
   "scope": "Sealed public client and worker packages on an existing compatible fleet; finite short timing and runtime/custody integration. No fleet service deployment, sustained-serving or model-quality claim.",

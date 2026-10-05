@@ -25,6 +25,8 @@ from uuid import uuid4
 
 import numpy as np
 
+from .._compat import add_exception_note
+
 from .contracts import (
     BackendCapabilities,
     CommitResult,
@@ -1476,7 +1478,7 @@ class MlxNativeRuntime:
                     try:
                         self._release_caches(caches)
                     except BaseException as cleanup_exc:
-                        exc.add_note(f"cache allocation cleanup also failed: {cleanup_exc}")
+                        add_exception_note(exc, f"cache allocation cleanup also failed: {cleanup_exc}")
                 raise
             self._states[state_id] = state
             return state
@@ -1603,7 +1605,7 @@ class MlxNativeRuntime:
                     try:
                         self._release_caches(caches)
                     except BaseException as cleanup_exc:
-                        exc.add_note(f"fork cache cleanup also failed: {cleanup_exc}")
+                        add_exception_note(exc, f"fork cache cleanup also failed: {cleanup_exc}")
                 raise
             self._states[state_id] = forked_state
             self._state_forks += 1

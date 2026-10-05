@@ -907,10 +907,13 @@ def test_cancel_running_job(fleet):
 
 def test_history_reservation_on_resubmit(fleet):
     api = fleet
-    code = "print('calib')"
+    # An instant print can exit between RSS samples on a fast Linux worker.
+    # Hold this calibration process through at least one agent sampling tick.
+    code = "import time; print('calib'); time.sleep(1.5)"
     cfg = {"model": None, "code": code, "tag": "calib"}
     j1 = _submit(api, "calib", code, ram_mb=400, config=cfg)
-    _wait_state(api, j1, {"succeeded"}, timeout=90)
+    measured = _wait_state(api, j1, {"succeeded"}, timeout=90)
+    assert measured["result"]["peak_rss_mb"] > 0, measured["result"]
     # resubmit the SAME config without a declared reservation -> history should win
     from mrun.client.submit import submit
 

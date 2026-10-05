@@ -14,7 +14,7 @@ Python 3.10+; Linux and macOS.
 Public Git installation (no SSH access required):
 
 ```sh
-python -m pip install 'mrun-pub[runtime] @ git+https://github.com/JHollenb/mrun-pub.git@v0.1.1'
+python -m pip install 'mrun-pub[runtime] @ git+https://github.com/JHollenb/mrun-pub.git@v0.1.2'
 ```
 
 Or install selected extras from a local checkout:

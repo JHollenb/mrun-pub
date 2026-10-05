@@ -1,0 +1,2212 @@
+{
+  "adaptation_sources": [
+    {
+      "includes_working_tree": true,
+      "repository": "manalysis",
+      "source": "src/manalysis/winder.py",
+      "source_commit": "c9c617e79618e59457c35f9e34bca0080892b916",
+      "source_sha256": "7f8a540af72dfec8a92d9138750d6c324e476c7ab18ce55bd48a7b795fa04bbe",
+      "symbols": [
+        "LoRAConfig",
+        "PagedLoRATrainer"
+      ],
+      "target": "src/mrun/training/paged_lora.py"
+    },
+    {
+      "includes_working_tree": true,
+      "repository": "mrun",
+      "source": "src/mrun/mlops/registry.py",
+      "source_commit": "f002ce776e14143114e232ed6af872808a3de160",
+      "source_sha256": "f4b39d3e4bd115ca2ff36f54a4c80ccb61e3746650a0267e27346052d472da86",
+      "symbols": [
+        "build_base_model_manifest"
+      ],
+      "target": "src/mrun/artifacts.py"
+    },
+    {
+      "includes_working_tree": true,
+      "repository": "mrun",
+      "source": "scripts/run-inference-service.sh",
+      "source_commit": "f002ce776e14143114e232ed6af872808a3de160",
+      "source_sha256": "9ae66e0f72a9e1ba4e843f6179be38591f0fd0aa860019ff48c7fe357e781c5b",
+      "target": "scripts/run-inference-service.sh"
+    }
+  ],
+  "copied": [
+    {
+      "source": "src/mrun/__init__.py",
+      "source_sha256": "945eb396a59f365c2904044ef12100f7c0e24c08bdc311583de8c247f00bd4ba",
+      "target": "src/mrun/__init__.py"
+    },
+    {
+      "source": "src/mrun/agent/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target": "src/mrun/agent/__init__.py"
+    },
+    {
+      "source": "src/mrun/agent/__main__.py",
+      "source_sha256": "bc143cdb7df8917d3a2260db1653c582205188b2229f0364df3f0a86cea177be",
+      "target": "src/mrun/agent/__main__.py"
+    },
+    {
+      "source": "src/mrun/agent/config.py",
+      "source_sha256": "81705a80e53908580deb27eaced8924fab6cb51e10d2485ab246d9b83dc75b07",
+      "target": "src/mrun/agent/config.py"
+    },
+    {
+      "source": "src/mrun/agent/dispatch_guard.py",
+      "source_sha256": "dac795368449ccac43322c05cb993122428fd44a399cbbde55eafd6e78466583",
+      "target": "src/mrun/agent/dispatch_guard.py"
+    },
+    {
+      "source": "src/mrun/agent/executor.py",
+      "source_sha256": "8abc9fe04ff8821708262c8effd9a237dfd12e5b6d9eac80eb59c1a3c73a0986",
+      "target": "src/mrun/agent/executor.py"
+    },
+    {
+      "source": "src/mrun/agent/hostinfo.py",
+      "source_sha256": "9892630700a9b5fc4fd837e7ea770eca827955d8d6a2beb61db1c49f73efc511",
+      "target": "src/mrun/agent/hostinfo.py"
+    },
+    {
+      "source": "src/mrun/agent/main.py",
+      "source_sha256": "fa1b498f5b6e84259c2f14c9807bf012db57d82a0d0e0956b8c4b22dd1e8656e",
+      "target": "src/mrun/agent/main.py"
+    },
+    {
+      "source": "src/mrun/analysis_campaign.py",
+      "source_sha256": "44b0108bdcdd192451e8c8f7779a75c490aa587f7ee740e9a11863c2d2970b98",
+      "target": "src/mrun/analysis_campaign.py"
+    },
+    {
+      "source": "src/mrun/arch.py",
+      "source_sha256": "3ffa69c8aba02a6a8b67b027f56e3f77bf86cee050b901474de0318c8c8001a4",
+      "target": "src/mrun/arch.py"
+    },
+    {
+      "source": "src/mrun/catalog.py",
+      "source_sha256": "a05ab41ffba0a262ada40b2ea467a6266284074ed07ed08e7dc6a68d39d67695",
+      "target": "src/mrun/catalog.py"
+    },
+    {
+      "source": "src/mrun/claims.py",
+      "source_sha256": "ee04cbf5ba8f0375e521300c72586b461773645186471472436292c16234ab67",
+      "target": "src/mrun/claims.py"
+    },
+    {
+      "source": "src/mrun/cli.py",
+      "source_sha256": "ffc82c236490b70d453b6b33ff6cd70cf476922533baf197df7bb5dfabd5256e",
+      "target": "src/mrun/cli.py"
+    },
+    {
+      "source": "src/mrun/client/__init__.py",
+      "source_sha256": "09dafffa428ced52379aef803dfa3ec43cd9c28680095b3b396e9de370da6817",
+      "target": "src/mrun/client/__init__.py"
+    },
+    {
+      "source": "src/mrun/client/api.py",
+      "source_sha256": "34c290bed9b141bc84abc247db6743ec0627594dcd5687488fcef96417a0b731",
+      "target": "src/mrun/client/api.py"
+    },
+    {
+      "source": "src/mrun/client/localrun.py",
+      "source_sha256": "cdc9f82c84964a81a4652264edb796369a04e6f5f851ea913f61ef15cd0b2cf2",
+      "target": "src/mrun/client/localrun.py"
+    },
+    {
+      "source": "src/mrun/client/preflight.py",
+      "source_sha256": "23b4edd836663bd9f0bacd00b9ee7e6d5b4d553e92f5101360372883274157ba",
+      "target": "src/mrun/client/preflight.py"
+    },
+    {
+      "source": "src/mrun/client/submit.py",
+      "source_sha256": "8094e7feabe47d7661387c54b848311882b748e406cd546badbfe26fe7b6418e",
+      "target": "src/mrun/client/submit.py"
+    },
+    {
+      "source": "src/mrun/compiler/__init__.py",
+      "source_sha256": "d0bc1c1df1ec226e77eb004048c752e35bb32cce37e3f2754e00dd3bee8f58f5",
+      "target": "src/mrun/compiler/__init__.py"
+    },
+    {
+      "source": "src/mrun/compiler/adapters.py",
+      "source_sha256": "d17db345051eb866dff6fa1f421733f24a988d71f0f25be06a3fc278c0addc8f",
+      "target": "src/mrun/compiler/adapters.py"
+    },
+    {
+      "source": "src/mrun/compiler/artifacts.py",
+      "source_sha256": "a65925df1f04ca0ceb35ef29b80d02e8f733724ad9d559eaa43024932ad96173",
+      "target": "src/mrun/compiler/artifacts.py"
+    },
+    {
+      "source": "src/mrun/compiler/benchmark.py",
+      "source_sha256": "6ece44ee0454244cba652b8572097058d21b4920ea11a65b1a11eee9f5533e5a",
+      "target": "src/mrun/compiler/benchmark.py"
+    },
+    {
+      "source": "src/mrun/compiler/bundle.py",
+      "source_sha256": "d34d0b4a9c210a083f9dc3f040d914e91d5262b2c2ec69ac0490adadc0df562e",
+      "target": "src/mrun/compiler/bundle.py"
+    },
+    {
+      "source": "src/mrun/compiler/cache.py",
+      "source_sha256": "eb72fafab6ee7d864313276856f6cf6c813aa06aa1afde5ae7e7642fb9304553",
+      "target": "src/mrun/compiler/cache.py"
+    },
+    {
+      "source": "src/mrun/compiler/campaign.py",
+      "source_sha256": "1632b0aaa1c858965012c4fcbff89776a6cc9c3161bcf14bccdbb29653e0aa5e",
+      "target": "src/mrun/compiler/campaign.py"
+    },
+    {
+      "source": "src/mrun/compiler/campaign_benchmark.py",
+      "source_sha256": "ee79738cd75df12ebc6b86cbd09faa7eb3e8ea3870859d678c723d16d088f33d",
+      "target": "src/mrun/compiler/campaign_benchmark.py"
+    },
+    {
+      "source": "src/mrun/compiler/campaign_factorial.py",
+      "source_sha256": "c41bd6b82156374e2b323ac46d595750dd8f778b263dfde14c2d836096109b18",
+      "target": "src/mrun/compiler/campaign_factorial.py"
+    },
+    {
+      "source": "src/mrun/compiler/capture_benchmark.py",
+      "source_sha256": "37804d38bd4912c34fe05379359c46825fb2561937b1db4a8c8cab5e0bc6fdbc",
+      "target": "src/mrun/compiler/capture_benchmark.py"
+    },
+    {
+      "source": "src/mrun/compiler/cohort.py",
+      "source_sha256": "a2b4cd897bca02331f03f3e69845646ec2a1db9c45eeffca22dcb1ed07804edc",
+      "target": "src/mrun/compiler/cohort.py"
+    },
+    {
+      "source": "src/mrun/compiler/cost.py",
+      "source_sha256": "4c14afb5beb9e18ffc43fc9e7006cc19cee1ca5df8a5bc148e74e75b3f4e5d2b",
+      "target": "src/mrun/compiler/cost.py"
+    },
+    {
+      "source": "src/mrun/compiler/debug_branch_adapter.py",
+      "source_sha256": "5cc8ce471fb4e4181055be223bb7fa85de9397a02f919b40010e0332575c63cf",
+      "target": "src/mrun/compiler/debug_branch_adapter.py"
+    },
+    {
+      "source": "src/mrun/compiler/evidence.py",
+      "source_sha256": "436b87d4597e37b5909d80f287a3c61fdbea7fce94f0efbde15cca572c702fdb",
+      "target": "src/mrun/compiler/evidence.py"
+    },
+    {
+      "source": "src/mrun/compiler/executable.py",
+      "source_sha256": "9bea790881c09ec58cc9f637a30a25664b8b69f88ce4a2547eaf9fad7d7afe17",
+      "target": "src/mrun/compiler/executable.py"
+    },
+    {
+      "source": "src/mrun/compiler/graph.py",
+      "source_sha256": "22410ad5e3fe035968f590dd969422eed1e267715059f2e3774c10e2307a201d",
+      "target": "src/mrun/compiler/graph.py"
+    },
+    {
+      "source": "src/mrun/compiler/graph_passes.py",
+      "source_sha256": "d4845bebe9038ca387d9a6f661b4b2c046b811015f4083d3aef91a7072ba5ef4",
+      "target": "src/mrun/compiler/graph_passes.py"
+    },
+    {
+      "source": "src/mrun/compiler/identity.py",
+      "source_sha256": "20504dc9077277d5b15e21c3cab9110c1a6760db347e2c5300f144c0282b1bb0",
+      "target": "src/mrun/compiler/identity.py"
+    },
+    {
+      "source": "src/mrun/compiler/ir.py",
+      "source_sha256": "44bdc42f5717589208621265fbe9312e32c7fb86820766cc34c601ba7769f088",
+      "target": "src/mrun/compiler/ir.py"
+    },
+    {
+      "source": "src/mrun/compiler/lowering.py",
+      "source_sha256": "c8a3dfd800483c9e07e4eebb27fe51e240ffd228b06437bf3927bf7da4ecbb69",
+      "target": "src/mrun/compiler/lowering.py"
+    },
+    {
+      "source": "src/mrun/compiler/memory.py",
+      "source_sha256": "1815e6ec59b6cb2e0b9bf04cb4b376a841bcfb866a83e7988aefc13e5fe44217",
+      "target": "src/mrun/compiler/memory.py"
+    },
+    {
+      "source": "src/mrun/compiler/phase_evidence.py",
+      "source_sha256": "7eeb3fc141ed8a7b693b1830426daa14b1502830d3973811095130b5b9cd8a33",
+      "target": "src/mrun/compiler/phase_evidence.py"
+    },
+    {
+      "source": "src/mrun/compiler/profile_fusion.py",
+      "source_sha256": "f6d677c59229642388d86a8415bd4b02d562e6980657efaa79e293ceb6cdeb5a",
+      "target": "src/mrun/compiler/profile_fusion.py"
+    },
+    {
+      "source": "src/mrun/compiler/promotions.py",
+      "source_sha256": "5dc50907fbdfaaeac23d85754d7c973c4798cfdd9d032697965394fed322ca99",
+      "target": "src/mrun/compiler/promotions.py"
+    },
+    {
+      "source": "src/mrun/compiler/residency.py",
+      "source_sha256": "2a5a5589a68d321c45d6e412de16b11c2a6566c57aedc244998efdf0eb529200",
+      "target": "src/mrun/compiler/residency.py"
+    },
+    {
+      "source": "src/mrun/compiler/resident_program.py",
+      "source_sha256": "b224dfddf5e0d474a17c53f510dd2c2e98efc95a1d3f0dc8ea100c2fde759d81",
+      "target": "src/mrun/compiler/resident_program.py"
+    },
+    {
+      "source": "src/mrun/compiler/resident_promotions.py",
+      "source_sha256": "54915b0d43aee595416a29338895fb98d2939b11feced35ff2e5f83fadf06f0b",
+      "target": "src/mrun/compiler/resident_promotions.py"
+    },
+    {
+      "source": "src/mrun/compiler/sciencegraph.py",
+      "source_sha256": "09baadfe3e99874c4ac91bdea36e1e48cee6d6d15749263c96d12faa848950ca",
+      "target": "src/mrun/compiler/sciencegraph.py"
+    },
+    {
+      "source": "src/mrun/compiler/temporal.py",
+      "source_sha256": "aa0a75242892c625e2d8885fccd744e7e4bfc1fb87b4a2651d35ad093f2c6c97",
+      "target": "src/mrun/compiler/temporal.py"
+    },
+    {
+      "source": "src/mrun/compiler/trace.py",
+      "source_sha256": "9fc9002460795d30d56a51166f164beed949e688dd566c6390aec01e67c3063d",
+      "target": "src/mrun/compiler/trace.py"
+    },
+    {
+      "source": "src/mrun/compiler/work_floor.py",
+      "source_sha256": "b907d5edc27eea01a9ecfdd6712493197c04681591bb4724e4e8edeb4b6210e2",
+      "target": "src/mrun/compiler/work_floor.py"
+    },
+    {
+      "source": "src/mrun/decompiler/__init__.py",
+      "source_sha256": "0b18bc321c0c5d859576c1b12ea356d61bd48393e8d6f6ac1413f25b003218f6",
+      "target": "src/mrun/decompiler/__init__.py"
+    },
+    {
+      "source": "src/mrun/decompiler/_json.py",
+      "source_sha256": "bde8eb01223d29727937708f327a7d8b0fb2a7a5367b95fcd4af11dfdda34f2a",
+      "target": "src/mrun/decompiler/_json.py"
+    },
+    {
+      "source": "src/mrun/decompiler/adapters.py",
+      "source_sha256": "a56bbf380d06ede1c26a70077fc37ea164cd0efdbbfd60600b582bbef3c135b5",
+      "target": "src/mrun/decompiler/adapters.py"
+    },
+    {
+      "source": "src/mrun/decompiler/cli.py",
+      "source_sha256": "462f734671c535a1382a925cbe23c533bd6e1834820529a531dc76b400915962",
+      "target": "src/mrun/decompiler/cli.py"
+    },
+    {
+      "source": "src/mrun/decompiler/compiler.py",
+      "source_sha256": "a30439c090c685e5cefbc71b29fb75d4f0ced4c869138ef71d96a9a27e069507",
+      "target": "src/mrun/decompiler/compiler.py"
+    },
+    {
+      "source": "src/mrun/decompiler/cuda_native.py",
+      "source_sha256": "f9360cc498b8521f593889d723d10c7849dc880a1fe2a45f9575faeceedc6cbc",
+      "target": "src/mrun/decompiler/cuda_native.py"
+    },
+    {
+      "source": "src/mrun/decompiler/emitter.py",
+      "source_sha256": "94c20789cdb8a7365f4f88a962e061074775f142eff31c1a7cb97117532e1843",
+      "target": "src/mrun/decompiler/emitter.py"
+    },
+    {
+      "source": "src/mrun/decompiler/errors.py",
+      "source_sha256": "86d56887c26bcd21e907cd075acbf54743231459322040ee5d0d742395b30836",
+      "target": "src/mrun/decompiler/errors.py"
+    },
+    {
+      "source": "src/mrun/decompiler/ir.py",
+      "source_sha256": "b60149fa6faecc99e94d501af68d9ee5b4f9e044d081fec3f0aef9f2ce651f1d",
+      "target": "src/mrun/decompiler/ir.py"
+    },
+    {
+      "source": "src/mrun/decompiler/matching.py",
+      "source_sha256": "e73067ad91b32009065c47c78d3e534b4a14067f15c6eaa40c8e87a58dc7caf9",
+      "target": "src/mrun/decompiler/matching.py"
+    },
+    {
+      "source": "src/mrun/decompiler/mlx_hybrid.py",
+      "source_sha256": "aecce4644b34df302ce82aeff39d703a722c175b7ece33536a4d5c5cb55244d5",
+      "target": "src/mrun/decompiler/mlx_hybrid.py"
+    },
+    {
+      "source": "src/mrun/decompiler/mlx_lowbit.py",
+      "source_sha256": "44d746e6da4868f2e04aa50059db953bde64222fd9a10bd1dacd3574417bd11a",
+      "target": "src/mrun/decompiler/mlx_lowbit.py"
+    },
+    {
+      "source": "src/mrun/decompiler/mlx_mixtral_expert_store.py",
+      "source_sha256": "4412f047eb6d8c6c4fa443bdeaa32d041ccf53430b4b24c8cac4a4e39e16f443",
+      "target": "src/mrun/decompiler/mlx_mixtral_expert_store.py"
+    },
+    {
+      "source": "src/mrun/decompiler/mlx_native.py",
+      "source_sha256": "a61c9268b897d39047ee7ddaca5cbcd92738009f7ddf5a90a09b876cbc49634b",
+      "target": "src/mrun/decompiler/mlx_native.py"
+    },
+    {
+      "source": "src/mrun/decompiler/plugins.py",
+      "source_sha256": "49ff7efc1068f998ba0465bf4eacd42d821b4f63933c3a5805f19d9bdfc09a83",
+      "target": "src/mrun/decompiler/plugins.py"
+    },
+    {
+      "source": "src/mrun/decompiler/qwen35_adapter.py",
+      "source_sha256": "8f0166b40146573d70434465f68ef406b3252c953bc66edb82f358d27a391a88",
+      "target": "src/mrun/decompiler/qwen35_adapter.py"
+    },
+    {
+      "source": "src/mrun/decompiler/qwen35_stateful.py",
+      "source_sha256": "6f4c9fafbce74ddd9f9e21082a739427ee09dcddc97ff63f035526644930041f",
+      "target": "src/mrun/decompiler/qwen35_stateful.py"
+    },
+    {
+      "source": "src/mrun/decompiler/reference.py",
+      "source_sha256": "304c4146679d9928763b6bdfe86d67a150f5b5b8a7d3a1e5dd5407205ca0c267",
+      "target": "src/mrun/decompiler/reference.py"
+    },
+    {
+      "source": "src/mrun/decompiler/reports.py",
+      "source_sha256": "adbdcb1a767c0307a7fbcdd1186f83e5f999e0996299974d872b4e1f18dfc6e5",
+      "target": "src/mrun/decompiler/reports.py"
+    },
+    {
+      "source": "src/mrun/decompiler/source.py",
+      "source_sha256": "8583528f40508fa5832c743ca83b0b260c2fad3c2622a7086305d29c7be30b9d",
+      "target": "src/mrun/decompiler/source.py"
+    },
+    {
+      "source": "src/mrun/decompiler/stateful_reference.py",
+      "source_sha256": "f1810d50196075e2c92934618e0829efbef33c4a076684a5be858c0a7e097ac3",
+      "target": "src/mrun/decompiler/stateful_reference.py"
+    },
+    {
+      "source": "src/mrun/decompiler/tensor_index.py",
+      "source_sha256": "7cfe127dce4bb1824e7c153d468795fb7df74188c1eccb576953d71cbd6e2c0c",
+      "target": "src/mrun/decompiler/tensor_index.py"
+    },
+    {
+      "source": "src/mrun/device.py",
+      "source_sha256": "f72982696716422989f3f75869a62e0ca043c2d96c9e8543184fe9b6d0142127",
+      "target": "src/mrun/device.py"
+    },
+    {
+      "source": "src/mrun/diagnostics.py",
+      "source_sha256": "be21214568d33513bea7347b9bd9c37976527c33dbae6ab645288250d6847a8c",
+      "target": "src/mrun/diagnostics.py"
+    },
+    {
+      "source": "src/mrun/diffusion/__init__.py",
+      "source_sha256": "b42a1735efcd2bf2252846a96434b2816f6eb088946a2bce2e81d3b3b1782b6e",
+      "target": "src/mrun/diffusion/__init__.py"
+    },
+    {
+      "source": "src/mrun/diffusion/cache.py",
+      "source_sha256": "74ff908cc2678d9c8263877a3ad4f70c44abddef0565e2648756c624b6c2cb06",
+      "target": "src/mrun/diffusion/cache.py"
+    },
+    {
+      "source": "src/mrun/diffusion/distill.py",
+      "source_sha256": "58013416b0868e541ca0ce30ccd6bbe4843fd0886f3fb48404ba5c0152bb2678",
+      "target": "src/mrun/diffusion/distill.py"
+    },
+    {
+      "source": "src/mrun/diffusion/hybrid.py",
+      "source_sha256": "d7643ab5f358b2b07cd493fcbe0ecc6182dc07fd7f90f6220a0f075fbb850720",
+      "target": "src/mrun/diffusion/hybrid.py"
+    },
+    {
+      "source": "src/mrun/diffusion/interop.py",
+      "source_sha256": "df964184f3eefb71fff856dd293164572c131894ce6c5d8f22883145deafa5cd",
+      "target": "src/mrun/diffusion/interop.py"
+    },
+    {
+      "source": "src/mrun/diffusion/io.py",
+      "source_sha256": "6acfb795683cd3451ddcae8fce65e478a8ca9f7cf9f40d5cb634914760add9cd",
+      "target": "src/mrun/diffusion/io.py"
+    },
+    {
+      "source": "src/mrun/diffusion/native.py",
+      "source_sha256": "d57ef73f31f95a9c37cd9eaa977064b3b2b25a061e7d5331bd3b151e5a926451",
+      "target": "src/mrun/diffusion/native.py"
+    },
+    {
+      "source": "src/mrun/diffusion/nonflux.py",
+      "source_sha256": "6537988aa0d32aee29094f205d785d566e7173b9bd99f6f8fd7965ed817ee664",
+      "target": "src/mrun/diffusion/nonflux.py"
+    },
+    {
+      "source": "src/mrun/diffusion/phase.py",
+      "source_sha256": "adb71412163334cb68d193741870b7f3f2d84082bec449a90e222494af15a0f0",
+      "target": "src/mrun/diffusion/phase.py"
+    },
+    {
+      "source": "src/mrun/diffusion/program.py",
+      "source_sha256": "87e7f099c5eb22a7e277d89f31bc609f478fdad716c37bb0cbcc0ac13790f183",
+      "target": "src/mrun/diffusion/program.py"
+    },
+    {
+      "source": "src/mrun/diffusion/qstore.py",
+      "source_sha256": "434006aa539ed273945f7591cf6970fd10a46cab48c29473555a104e9f26d1cf",
+      "target": "src/mrun/diffusion/qstore.py"
+    },
+    {
+      "source": "src/mrun/diffusion/resources.py",
+      "source_sha256": "ba7df00a464585d4749e611739e1e0527b1b3d429ad1be7ce418810453d885b4",
+      "target": "src/mrun/diffusion/resources.py"
+    },
+    {
+      "source": "src/mrun/diffusion/saturn_kernels.py",
+      "source_sha256": "5fd726e5bc5dc03479490e7d69e37a21bad814a92b4a9419c7abf7c7e02c9ec2",
+      "target": "src/mrun/diffusion/saturn_kernels.py"
+    },
+    {
+      "source": "src/mrun/diffusion/scene.py",
+      "source_sha256": "e40666cf16a2f05d336ea6bd9a7854e005c0b97b35e2838c2d0cdbba6928a172",
+      "target": "src/mrun/diffusion/scene.py"
+    },
+    {
+      "source": "src/mrun/diffusion/scheduler.py",
+      "source_sha256": "c5ad99fbaf859d9d080db4194d8740ae52f1efdeabea2c2cfb2fb772d3fc58f5",
+      "target": "src/mrun/diffusion/scheduler.py"
+    },
+    {
+      "source": "src/mrun/diffusion/service.py",
+      "source_sha256": "fe78c6006af846dbe22e2ce242ad03727eab427b664a0fb275c8739f7e3ef8bf",
+      "target": "src/mrun/diffusion/service.py"
+    },
+    {
+      "source": "src/mrun/diffusion/tiled.py",
+      "source_sha256": "27978c7e66ea924141a1f730f6503be3c964b026614da6f9d0cddd772e6792bc",
+      "target": "src/mrun/diffusion/tiled.py"
+    },
+    {
+      "source": "src/mrun/diffusion/train.py",
+      "source_sha256": "dcd70ff594bae444bf649257d846ceabc81110c8cbf36c402adc58ffe28807f4",
+      "target": "src/mrun/diffusion/train.py"
+    },
+    {
+      "source": "src/mrun/engine/__init__.py",
+      "source_sha256": "b81b648f45da541a582dffdae2949c2ff9fb96260aea4ed1d98609f5c0686be7",
+      "target": "src/mrun/engine/__init__.py"
+    },
+    {
+      "source": "src/mrun/engine/_base_impl.py",
+      "source_sha256": "7f92616038f7893d970320329ce3a4424a1ff70c1c50db2bc2b48b7d575a835b",
+      "target": "src/mrun/engine/_base_impl.py"
+    },
+    {
+      "source": "src/mrun/engine/ane.py",
+      "source_sha256": "ba59ad704cac6f8946e20c4f0cae9b5fd4240bf92bc718f13e15e63b8415520f",
+      "target": "src/mrun/engine/ane.py"
+    },
+    {
+      "source": "src/mrun/engine/base.py",
+      "source_sha256": "8f15f23543fb1ba9acada04ae4169127e9783c6b818be5fc2c3862485ab3a6ec",
+      "target": "src/mrun/engine/base.py"
+    },
+    {
+      "source": "src/mrun/engine/causal_family.py",
+      "source_sha256": "3a46d5fc75b7bf95ca66e7a9e839c8adc8d154a21114f8a81201eea30601eeeb",
+      "target": "src/mrun/engine/causal_family.py"
+    },
+    {
+      "source": "src/mrun/engine/component_builder.py",
+      "source_sha256": "43cbb5eb1f98f153f5f61632748b314dacf07457764a3fffaa163ce2a2526e34",
+      "target": "src/mrun/engine/component_builder.py"
+    },
+    {
+      "source": "src/mrun/engine/continuous.py",
+      "source_sha256": "b5aa72360c36be1e72e0f9957f3a47686ade4629de889609895f608ebdcdb1ff",
+      "target": "src/mrun/engine/continuous.py"
+    },
+    {
+      "source": "src/mrun/engine/dense_qstore_cuda.py",
+      "source_sha256": "06f83c50a41608fdd54cb6724f367de9466ff429a289d414c0ac4e978a5ec24e",
+      "target": "src/mrun/engine/dense_qstore_cuda.py"
+    },
+    {
+      "source": "src/mrun/engine/graph_pool.py",
+      "source_sha256": "6277e1543f9af34454c7334473c7094fcf5544101773b6e9f6fcbd87171091b1",
+      "target": "src/mrun/engine/graph_pool.py"
+    },
+    {
+      "source": "src/mrun/engine/hf.py",
+      "source_sha256": "7f39efe76a816c6a6e3e534855207245f38900667144d56fc223cdec0d862d3c",
+      "target": "src/mrun/engine/hf.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/__init__.py",
+      "source_sha256": "4fcf337c1836b58879b0ebace14af4285e5874474e5f82f401b05c6677fedb88",
+      "target": "src/mrun/engine/kernels/__init__.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/batch_invariant.py",
+      "source_sha256": "c848011ab4256cf32506e4aca1fb243812b5eaff38b5b824c8b45422a2c7117b",
+      "target": "src/mrun/engine/kernels/batch_invariant.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/body_only_qstore.py",
+      "source_sha256": "4caee9efac0d92e968e2ca913709af101cf9633aebdb30eb134c57f87728f8c5",
+      "target": "src/mrun/engine/kernels/body_only_qstore.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/composite_qstore.py",
+      "source_sha256": "a4cf07b363705c4a94a8921a661b40134004ff101d744014011576fad234141c",
+      "target": "src/mrun/engine/kernels/composite_qstore.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/dense_qstore_cuda.py",
+      "source_sha256": "0f99bd561d6bac84e2ae54ac6d7f380fe4f624e514f496cb1f26feb375e942b7",
+      "target": "src/mrun/engine/kernels/dense_qstore_cuda.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/expert_queue.py",
+      "source_sha256": "263134fadc002a165130fd501ebe23c5e86673408164a0d7735a31aaf8fe3e8e",
+      "target": "src/mrun/engine/kernels/expert_queue.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/lexical.py",
+      "source_sha256": "a787710fe29c0495c7d7f6b2964128829452579054f113f6fcb216ad4b10f172",
+      "target": "src/mrun/engine/kernels/lexical.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/lexical_compiler.py",
+      "source_sha256": "3c22695ba362d58cff4fafe723814932b334a3739fe11f4026f49c3f82ef5a8e",
+      "target": "src/mrun/engine/kernels/lexical_compiler.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/linked_qstore.py",
+      "source_sha256": "8191dc98602d7b8651f507af5649f9e455ac258619888b2b5e87501256d8a89b",
+      "target": "src/mrun/engine/kernels/linked_qstore.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/paged_forward.py",
+      "source_sha256": "6b924bba40346016d1e5b4f468806e8597c33a0700cf497a1020335f26fbc9d6",
+      "target": "src/mrun/engine/kernels/paged_forward.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore.py",
+      "source_sha256": "53d633ae14990bc1ab09ae92ac1e37a4ffbfe2e870bb49d612f1848318ff6762",
+      "target": "src/mrun/engine/kernels/qstore.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore_build.py",
+      "source_sha256": "27337844d501e513e3cefd975e837ad0748779f0e892a23887f683fb22660152",
+      "target": "src/mrun/engine/kernels/qstore_build.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore_fp32_build.py",
+      "source_sha256": "fbb091e4a1ddf2dec3fea63de64b80acd8c9a77408c134f743475c619d9b1988",
+      "target": "src/mrun/engine/kernels/qstore_fp32_build.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore_int2.py",
+      "source_sha256": "4b8aba1b8ed0c4be0c9425a6cfa02158508d837765a9f461523584e29612dc7b",
+      "target": "src/mrun/engine/kernels/qstore_int2.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore_int3.py",
+      "source_sha256": "c17fe30a9fc35b6c95e78f6ea06b81a75fd0a24f84060d398dca1f3d146a3cee",
+      "target": "src/mrun/engine/kernels/qstore_int3.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/qstore_int4.py",
+      "source_sha256": "36f6f4ac6223ef2923be98cca57401176d8ff742d665d48279fcf2385191e428",
+      "target": "src/mrun/engine/kernels/qstore_int4.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/segmented_gqa_decode.py",
+      "source_sha256": "18b9a90b1eee977f8c96ce6cf0f8d8cfa7a46e3083ad5de607572e62afbed559",
+      "target": "src/mrun/engine/kernels/segmented_gqa_decode.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/source_cuda_int8.py",
+      "source_sha256": "ecd1bf370e968c531c44f64bc096c87ba0253b3c9a5a44af27205ff1d3e3e889",
+      "target": "src/mrun/engine/kernels/source_cuda_int8.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/token_address_map.py",
+      "source_sha256": "ad31a9671bd755d32dc2f2101a9809e143ec8c00280bd34eefc024a7e6d5c8bf",
+      "target": "src/mrun/engine/kernels/token_address_map.py"
+    },
+    {
+      "source": "src/mrun/engine/kernels/w8a8.py",
+      "source_sha256": "904b609ef3f67e01fb9be34b46a7ec0d8882cfe8c59b7d5fd608dec6261c573f",
+      "target": "src/mrun/engine/kernels/w8a8.py"
+    },
+    {
+      "source": "src/mrun/engine/leaderboard.py",
+      "source_sha256": "4bad8a38455df5fa1a175080df17640611b26429e64690ec6c0959d0f79f7079",
+      "target": "src/mrun/engine/leaderboard.py"
+    },
+    {
+      "source": "src/mrun/engine/mlx.py",
+      "source_sha256": "8f8a71d0793429f5a347b8fed4e6632a2c9b6504d3eb381559d371990daed653",
+      "target": "src/mrun/engine/mlx.py"
+    },
+    {
+      "source": "src/mrun/engine/mlx_component.py",
+      "source_sha256": "14f46af506e217e15835049e35d271e4d9d26087bf7cdc989602ce427e018200",
+      "target": "src/mrun/engine/mlx_component.py"
+    },
+    {
+      "source": "src/mrun/engine/moe_stream.py",
+      "source_sha256": "940d52edb4ddc27ceb48b58c46eb03938d0fa38f38c27f6e499d2f0cbdf2634d",
+      "target": "src/mrun/engine/moe_stream.py"
+    },
+    {
+      "source": "src/mrun/engine/multifabric.py",
+      "source_sha256": "cad79e196c18c5785bfa52535ac5e0cff2d8ebdc03c26506976584efd14735e4",
+      "target": "src/mrun/engine/multifabric.py"
+    },
+    {
+      "source": "src/mrun/engine/multifabric_proc.py",
+      "source_sha256": "b576cca68e5417dd430bbf5857e0a44af6a49872dcf5ee57ae2c9efa57063c1a",
+      "target": "src/mrun/engine/multifabric_proc.py"
+    },
+    {
+      "source": "src/mrun/engine/olmoe_cuda.py",
+      "source_sha256": "fdebf236b3f6bd07fe4ac8ba423d44b7fbbf852c688fdb989bf216759eed2092",
+      "target": "src/mrun/engine/olmoe_cuda.py"
+    },
+    {
+      "source": "src/mrun/engine/paged.py",
+      "source_sha256": "042bf7f0ced99b488623feffb1d7aef64067e237c79c427474ed42c428817df5",
+      "target": "src/mrun/engine/paged.py"
+    },
+    {
+      "source": "src/mrun/engine/paged_reactor.py",
+      "source_sha256": "35dc29ee802bca1b29ef7a5643067715eefc2d821e67c9275dd87f60c2fcbe7c",
+      "target": "src/mrun/engine/paged_reactor.py"
+    },
+    {
+      "source": "src/mrun/engine/profiles.py",
+      "source_sha256": "9f0882838db4f8fa934c8953a0cb8d6b52f6a48d596b9cf2bab13e42a76a14a1",
+      "target": "src/mrun/engine/profiles.py"
+    },
+    {
+      "source": "src/mrun/engine/qwen35_statecut.py",
+      "source_sha256": "8ba5365f936b75ebd7678daf1e74293089ba0dd554789b65c5338b9f9adc2f38",
+      "target": "src/mrun/engine/qwen35_statecut.py"
+    },
+    {
+      "source": "src/mrun/engine/qwen3_moe_cli.py",
+      "source_sha256": "4f761cf646181d56267fce9d7a12747ebf98697d7449fbd324c4ef84d110490b",
+      "target": "src/mrun/engine/qwen3_moe_cli.py"
+    },
+    {
+      "source": "src/mrun/engine/qwen3_moe_cuda.py",
+      "source_sha256": "cf32377db2f1059e53eb3007bae7f11bbc033cc93d4101a4b615dbbf0abbca8a",
+      "target": "src/mrun/engine/qwen3_moe_cuda.py"
+    },
+    {
+      "source": "src/mrun/engine/qwen3_moe_statecut.py",
+      "source_sha256": "2b7a795f645b05a08466998e4baa337aa508cf157865d8b1bc559b1a0cc5260c",
+      "target": "src/mrun/engine/qwen3_moe_statecut.py"
+    },
+    {
+      "source": "src/mrun/engine/reactor.py",
+      "source_sha256": "97b3ba2220c7bd4f4a1d5072287163ab7912304b1b93c63abf2e340ce514d84e",
+      "target": "src/mrun/engine/reactor.py"
+    },
+    {
+      "source": "src/mrun/engine/report.py",
+      "source_sha256": "f6a3565577100eceb2f48af5288c8af8a1d3cb25ae975c511347a91964337f16",
+      "target": "src/mrun/engine/report.py"
+    },
+    {
+      "source": "src/mrun/engine/resident_worker.py",
+      "source_sha256": "bccc3717f42fb02e8d58d871ed1ece803a800aa663273fcd10c0a7f6b18d0dd6",
+      "target": "src/mrun/engine/resident_worker.py"
+    },
+    {
+      "source": "src/mrun/engine/statecut.py",
+      "source_sha256": "aadb73d521114d46b63b9727a7c95240961385b8c2094a2d3955c58a51940a95",
+      "target": "src/mrun/engine/statecut.py"
+    },
+    {
+      "source": "src/mrun/estimate.py",
+      "source_sha256": "c0b7bc85c76bdea097af2abedb76fcc5039604558da688abe9567aede64c64f1",
+      "target": "src/mrun/estimate.py"
+    },
+    {
+      "source": "src/mrun/execute.py",
+      "source_sha256": "26ff63ed8e9ddedded6f287ea9e9e842b892944be4ea1691ae5bb0c67f0060ec",
+      "target": "src/mrun/execute.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/__init__.py",
+      "source_sha256": "fef2e6b6410056ceab79db226137ebf40457b3f9bf8e3afcd4ab26493295bb03",
+      "target": "src/mrun/fingerprint/__init__.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/api.py",
+      "source_sha256": "31a072075e9fb31bd99f95ff8f8ed4382e7b8a04d072bab14205a5e29af922d0",
+      "target": "src/mrun/fingerprint/api.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/cli.py",
+      "source_sha256": "e6b6e81dfaed4ab2ce96ff923128dba231e2e034f9eb540387995b52ebef5440",
+      "target": "src/mrun/fingerprint/cli.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/lineup.py",
+      "source_sha256": "c773fa9ed8d917edd6b92eabc35ab5babca7fa40d4d98fa15e3d9effbff28ade",
+      "target": "src/mrun/fingerprint/lineup.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/reader.py",
+      "source_sha256": "fbf36751d6b443b43dca032b3bad357b591e553a05359d9078ae49aaf7d0803b",
+      "target": "src/mrun/fingerprint/reader.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/rows.py",
+      "source_sha256": "3a0f7df75512160f5b3d846034e6a58364a915b421d3e713c44b6fa7c17f0ce5",
+      "target": "src/mrun/fingerprint/rows.py"
+    },
+    {
+      "source": "src/mrun/fingerprint/spectrum.py",
+      "source_sha256": "777c353a6563708aa9f489c1200e67aee6a4819fda44f0ac3ad27279fa36c97c",
+      "target": "src/mrun/fingerprint/spectrum.py"
+    },
+    {
+      "source": "src/mrun/fp8.py",
+      "source_sha256": "2ed598a338dd3e031ff0cff7572904e41d9ce9588f0e05129dbcd5827704ed71",
+      "target": "src/mrun/fp8.py"
+    },
+    {
+      "source": "src/mrun/guard.py",
+      "source_sha256": "de943373bf8c4732109d416a2fda39d51cef6845b5486b54c97cfd87d3bc32fb",
+      "target": "src/mrun/guard.py"
+    },
+    {
+      "source": "src/mrun/hf_cache.py",
+      "source_sha256": "d3566209bb1c8edd0a25f6efb5ba77e9d80562b553bc97fe0b3e977408d3b60c",
+      "target": "src/mrun/hf_cache.py"
+    },
+    {
+      "source": "src/mrun/ids.py",
+      "source_sha256": "11cb8872f873537905c1a767dc87de56cd910ba812b71e954683654850e3d1d2",
+      "target": "src/mrun/ids.py"
+    },
+    {
+      "source": "src/mrun/inference/__init__.py",
+      "source_sha256": "15feece84a111863d71f9ee143afc5f39e974f009dffcf64bd508765df680286",
+      "target": "src/mrun/inference/__init__.py"
+    },
+    {
+      "source": "src/mrun/inference/app.py",
+      "source_sha256": "eb505fbe90805583c65f09429a44122d9f456519379f3885a8e261eb913cdd52",
+      "target": "src/mrun/inference/app.py"
+    },
+    {
+      "source": "src/mrun/inference/chat.py",
+      "source_sha256": "295f858836891a131b89068faa867a0df76f17b9aa7bd53b8b6073c1163c792d",
+      "target": "src/mrun/inference/chat.py"
+    },
+    {
+      "source": "src/mrun/inference/cli.py",
+      "source_sha256": "f92e5d4593b059f1ba752eba69c5c5c97d8a2d13bf38003bb95c80b56e69313d",
+      "target": "src/mrun/inference/cli.py"
+    },
+    {
+      "source": "src/mrun/inference/loader.py",
+      "source_sha256": "4451f3a591eb9667a0908a09beed28f1f3fcddba267b8e24936136ba2794d9f4",
+      "target": "src/mrun/inference/loader.py"
+    },
+    {
+      "source": "src/mrun/inference/openai_protocol.py",
+      "source_sha256": "c678766309000bf14563e260d18af9932a3a33a2f4404561668b510989e884ee",
+      "target": "src/mrun/inference/openai_protocol.py"
+    },
+    {
+      "source": "src/mrun/inference/operations.py",
+      "source_sha256": "7ca44d3d55fed379a0b473d162771792a250d453398fdf52abd69a739d132ef2",
+      "target": "src/mrun/inference/operations.py"
+    },
+    {
+      "source": "src/mrun/inference/web_ui.py",
+      "source_sha256": "dca501d35f3d29861da7bf52b5ed902696f08e65d3cbcf9f633c2ea883851383",
+      "target": "src/mrun/inference/web_ui.py"
+    },
+    {
+      "source": "src/mrun/io.py",
+      "source_sha256": "a773e5005984e7410403639424355fe3fd125d4cb44fabd044b0d5478ec92b0b",
+      "target": "src/mrun/io.py"
+    },
+    {
+      "source": "src/mrun/models.py",
+      "source_sha256": "12f839e5ad794fec98418c386d015fe499212a0f7fb4ea347c95c2b645c76dce",
+      "target": "src/mrun/models.py"
+    },
+    {
+      "source": "src/mrun/mri/deepseek_v4_parity.py",
+      "source_sha256": "8f36bff65ce3df8aa06e37aca00df8e4c7ec5de829768ecf7a33a242280047b8",
+      "target": "src/mrun/testing/deepseek_v4_parity.py"
+    },
+    {
+      "source": "src/mrun/mri/deepseek_v4_stream.py",
+      "source_sha256": "6725cc23afc3afad1e9fe76a8549a99f3e55a722037ed32f8cec450f0f8c3c51",
+      "target": "src/mrun/engine/deepseek_v4_stream.py"
+    },
+    {
+      "source": "src/mrun/mri/moe_stream.py",
+      "source_sha256": "873ddc5a9d4d7267eb1b8bc2af2a69fb8e11e5479727a899e5c4e2ac51cfdcf2",
+      "target": "src/mrun/engine/moe_safetensors.py"
+    },
+    {
+      "source": "src/mrun/orchestrate.py",
+      "source_sha256": "43c52c1bd05918f7fb794a76447b6d3bebfe52b76d746b34351b5126937ee4ae",
+      "target": "src/mrun/orchestrate.py"
+    },
+    {
+      "source": "src/mrun/os_limit.py",
+      "source_sha256": "83743bd8f83dbb615545f0d662452f82bf646a4cfc2be89d968971c2a4bf14fa",
+      "target": "src/mrun/os_limit.py"
+    },
+    {
+      "source": "src/mrun/paths.py",
+      "source_sha256": "87fbc50d25fb0677d0eeb9d494e4b833434991394c5a5673d1c647f2c6ef67d0",
+      "target": "src/mrun/paths.py"
+    },
+    {
+      "source": "src/mrun/payload_sandbox.py",
+      "source_sha256": "069241b87c6f2d36d8f2f86817e18b22f1e67d475874b7f2ea591fa5060eb7ce",
+      "target": "src/mrun/payload_sandbox.py"
+    },
+    {
+      "source": "src/mrun/policy.py",
+      "source_sha256": "f06d94c28f538d17f20763fbbd7ab29930fa566833b0184c82f9f6bdda578286",
+      "target": "src/mrun/policy.py"
+    },
+    {
+      "source": "src/mrun/protocol.py",
+      "source_sha256": "6405214e7ccfb669040035ec6f879a9e972d0863697bea83095dff4b2d0d5539",
+      "target": "src/mrun/protocol.py"
+    },
+    {
+      "source": "src/mrun/resources.py",
+      "source_sha256": "8d559f273d8e1f479d0958628f5eb77789954df5b2b304b5940d14f3c50cde3e",
+      "target": "src/mrun/resources.py"
+    },
+    {
+      "source": "src/mrun/runtime/__init__.py",
+      "source_sha256": "d831c286e01b2a0c2c0188f174b2c6a2352de70b28c549e8c2980f64d4fa0c09",
+      "target": "src/mrun/runtime/__init__.py"
+    },
+    {
+      "source": "src/mrun/runtime/benchmark.py",
+      "source_sha256": "d781ca01ab429af48be80014e31b0896c834c089a76e5c464ee2f4e78f28f30d",
+      "target": "src/mrun/runtime/benchmark.py"
+    },
+    {
+      "source": "src/mrun/runtime/contracts.py",
+      "source_sha256": "31ace3bad9b9793415aa81d2e64df5dc402ce7d5a662cca0a1b66d7ca15d4a41",
+      "target": "src/mrun/runtime/contracts.py"
+    },
+    {
+      "source": "src/mrun/runtime/dense_cuda.py",
+      "source_sha256": "94776f1ac740b9abc240801a5d1e06448a2be5c46d7da655e233f654f636f16b",
+      "target": "src/mrun/runtime/dense_cuda.py"
+    },
+    {
+      "source": "src/mrun/runtime/dense_cuda_batch.py",
+      "source_sha256": "ef134f759b68b566cd2417598fbd7364a050e8a7261a3e2a2bcb51098d9b2ae4",
+      "target": "src/mrun/runtime/dense_cuda_batch.py"
+    },
+    {
+      "source": "src/mrun/runtime/inference/__init__.py",
+      "source_sha256": "7db88dfeaf792de5857cc6018321de722bbe08cadc3bc9678d24be21ba9b09e1",
+      "target": "src/mrun/runtime/inference/__init__.py"
+    },
+    {
+      "source": "src/mrun/runtime/inference/schemas.py",
+      "source_sha256": "bbabf049f86233bd1f6342a76c45cd3a12b20564da5241d9c5712a5879659114",
+      "target": "src/mrun/runtime/inference/schemas.py"
+    },
+    {
+      "source": "src/mrun/runtime/inference/service.py",
+      "source_sha256": "0ad7a1ad9a4a105fe6873d73b8303a1c738c85bfd8bcee5ef078210913c90db7",
+      "target": "src/mrun/runtime/inference/service.py"
+    },
+    {
+      "source": "src/mrun/runtime/inference/session.py",
+      "source_sha256": "a28766a3b884f937936f3a6fa3eaf2a093088e59db3805cf74da94eef107c8e8",
+      "target": "src/mrun/runtime/inference/session.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_mamba.py",
+      "source_sha256": "eea8b099844bd6b19152761b6c2da30333c19b04a6721b009b7b3ad37ed36d63",
+      "target": "src/mrun/runtime/mlx_mamba.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_mixtral_expert_paged.py",
+      "source_sha256": "d5915c41066f6101dfceb70e60581899398a3d50d6847960706fae6b96e11567",
+      "target": "src/mrun/runtime/mlx_mixtral_expert_paged.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_native.py",
+      "source_sha256": "6dc9a52b1c5effad20550c57e56073043e1307e07acfa17a4f95edac2582da50",
+      "target": "src/mrun/runtime/mlx_native.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_paged_attention.py",
+      "source_sha256": "84cdcbe7c63eeac1c0d9ca8939bdb3b35002b590965874e5a30175d862168a60",
+      "target": "src/mrun/runtime/mlx_paged_attention.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_paged_kv.py",
+      "source_sha256": "e1717e60ae1cca69301c25e2b102ac6773dc9dfbb6b35da06fff62f067c0707e",
+      "target": "src/mrun/runtime/mlx_paged_kv.py"
+    },
+    {
+      "source": "src/mrun/runtime/mlx_quantized_kv.py",
+      "source_sha256": "1fbaa8987697263d716d33795f8fdb6a410e9c5d72a47c4cde0dd8999fef6914",
+      "target": "src/mrun/runtime/mlx_quantized_kv.py"
+    },
+    {
+      "source": "src/mrun/runtime/native_backends.py",
+      "source_sha256": "588436d2d2d7856a29d3504f3a2b990deb99aac0abeb606fe24b51d1ca31e549",
+      "target": "src/mrun/runtime/native_backends.py"
+    },
+    {
+      "source": "src/mrun/runtime/placement.py",
+      "source_sha256": "d7e1764ef6485d6ef1b204b30cb5f51f645f722be72c07041587af77072a6707",
+      "target": "src/mrun/runtime/placement.py"
+    },
+    {
+      "source": "src/mrun/runtime/qwen3_moe_continuous.py",
+      "source_sha256": "49e90205dc6b3158b62ab88f28d927c6e09ec13565cf8c29e7bc417b7a7d9c3f",
+      "target": "src/mrun/runtime/qwen3_moe_continuous.py"
+    },
+    {
+      "source": "src/mrun/runtime/resident_advanced.py",
+      "source_sha256": "8314d90d4822b78024375023099f95b2534f7f37cd297938773e730ef803223b",
+      "target": "src/mrun/runtime/resident_advanced.py"
+    },
+    {
+      "source": "src/mrun/runtime/sampling.py",
+      "source_sha256": "759878f6e2d0c6bcc9fa9fd34e7eda81d7db5bf6be526276386975eedd8167da",
+      "target": "src/mrun/runtime/sampling.py"
+    },
+    {
+      "source": "src/mrun/runtime/speculative.py",
+      "source_sha256": "1946f3921c92207cf49b541f0d7307b49be652b0e592df34db736c037bba3752",
+      "target": "src/mrun/runtime/speculative.py"
+    },
+    {
+      "source": "src/mrun/science/__init__.py",
+      "source_sha256": "82259b6b60689440a4ddf6db1ede329a426256a99840a02a5e6aed0e7807c9f4",
+      "target": "src/mrun/science/__init__.py"
+    },
+    {
+      "source": "src/mrun/science/benchmark.py",
+      "source_sha256": "4f9405ec35e163549cc84056e0a11516670ccdbb4cae47151d4c945ba439c1b6",
+      "target": "src/mrun/science/benchmark.py"
+    },
+    {
+      "source": "src/mrun/science/cli.py",
+      "source_sha256": "e47988bbbf9006240a5d6a20e823c5ba47adb75ff7e7b6e09fc10142377ae98f",
+      "target": "src/mrun/science/cli.py"
+    },
+    {
+      "source": "src/mrun/science/config.py",
+      "source_sha256": "50c1a67b58d31d00d13b89f531d6a9326df1edb663e178774e85679e917ca8e8",
+      "target": "src/mrun/science/config.py"
+    },
+    {
+      "source": "src/mrun/science/qwen3_moe_page_trace.py",
+      "source_sha256": "770263e55bbb2534bf449950dd07ff272309c87c1a8c7a381301a68d3879b8ae",
+      "target": "src/mrun/science/qwen3_moe_page_trace.py"
+    },
+    {
+      "source": "src/mrun/science/runtime.py",
+      "source_sha256": "6229124af0783365241625439d31a98fb263da5c7a6f65101c455b6466bebac9",
+      "target": "src/mrun/science/runtime.py"
+    },
+    {
+      "source": "src/mrun/selector.py",
+      "source_sha256": "df8c7b44027e515ec320fe132a2bfe3631a0376260bdc0eb5cdd681c708e8dbd",
+      "target": "src/mrun/selector.py"
+    },
+    {
+      "source": "src/mrun/server/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target": "src/mrun/server/__init__.py"
+    },
+    {
+      "source": "src/mrun/server/__main__.py",
+      "source_sha256": "792a4f21f5f16d2bae2dc0aaca2c157a95f5a155cf3fa88a44ab789f4bc2c134",
+      "target": "src/mrun/server/__main__.py"
+    },
+    {
+      "source": "src/mrun/server/app.py",
+      "source_sha256": "20c616af413b0b68bf4a65d8a38b07d3e78ccdcb674148ff3c5f59561595b8e7",
+      "target": "src/mrun/server/app.py"
+    },
+    {
+      "source": "src/mrun/server/db.py",
+      "source_sha256": "2292b9348779279a25bd16b6fffcb256c90bdc20f725e67cfca6826c5d20aace",
+      "target": "src/mrun/server/db.py"
+    },
+    {
+      "source": "src/mrun/server/executable_inventory.py",
+      "source_sha256": "ce4779ce50fa0fbce35fbe7557c79d564175d11b3a7c30743608f47fd98a3ce7",
+      "target": "src/mrun/server/executable_inventory.py"
+    },
+    {
+      "source": "src/mrun/server/reservation.py",
+      "source_sha256": "98dafde808d2a2103988180feaaaa6398cc0b1f6ddcbe74fc95a78dd0496e35f",
+      "target": "src/mrun/server/reservation.py"
+    },
+    {
+      "source": "src/mrun/server/scheduler.py",
+      "source_sha256": "de14403ef27d59aa66212b9aa92610125a382c20aff5adc2ff7e42629e89efd7",
+      "target": "src/mrun/server/scheduler.py"
+    },
+    {
+      "source": "src/mrun/server/static/index.html",
+      "source_sha256": "9bbe15a77adb47629ce1902cdc997ff24521782ffa816f541ac7cbb6a6f4cd3f",
+      "target": "src/mrun/server/static/index.html"
+    },
+    {
+      "source": "src/mrun/store_provenance.py",
+      "source_sha256": "5e1f059302a25233f0f769584d2fa7fd29d0f9f62ae12e0f26badf719398617a",
+      "target": "src/mrun/store_provenance.py"
+    },
+    {
+      "source": "src/mrun/testing/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target": "src/mrun/testing/__init__.py"
+    },
+    {
+      "source": "src/mrun/testing/causal_paged.py",
+      "source_sha256": "6931595e3cb56f8af6428dbafaec356f9f9ad0797fed64b4d7d69c20581e6ca7",
+      "target": "src/mrun/testing/causal_paged.py"
+    },
+    {
+      "source": "src/mrun/testing/cuda_parity.py",
+      "source_sha256": "64f67e2cc17f1a9ef1ebf3421cb68164a3bbaccf4aaa326ad2e4c53fcd7cf18f",
+      "target": "src/mrun/testing/cuda_parity.py"
+    },
+    {
+      "source": "src/mrun/testing/dense_cuda_selected.py",
+      "source_sha256": "f804d22075e74f39187f2406733e7980a9700af707d8c44c0ee3f429d436133c",
+      "target": "src/mrun/testing/dense_cuda_selected.py"
+    },
+    {
+      "source": "src/mrun/testing/paged_behavior.py",
+      "source_sha256": "449cec628db288210e57adcb2a3cb74ab60c219bc998b8810815da522235e214",
+      "target": "src/mrun/testing/paged_behavior.py"
+    },
+    {
+      "source": "src/mrun/testing/parity.py",
+      "source_sha256": "94f753d7c049f29e3150795bd1b01c97ede2dd6cf8931963eaaf3900adefa8b0",
+      "target": "src/mrun/testing/parity.py"
+    },
+    {
+      "source": "src/mrun/testing/qstore_identity.py",
+      "source_sha256": "12dff801204a14cb6c4b8761ad6da225bce358772e4e6e5ea950e55c8141a1b7",
+      "target": "src/mrun/testing/qstore_identity.py"
+    },
+    {
+      "source": "src/mrun/testing/signature.py",
+      "source_sha256": "10deb7cc2d3a37cfd2cc221b1e31ea51f6524b205526395def086d2c70ef1d93",
+      "target": "src/mrun/testing/signature.py"
+    },
+    {
+      "source": "src/mrun/tools/__init__.py",
+      "source_sha256": "9e4b39c1527d39c63691bec1cb8be384f4e6580c37e9b39edd25e8012ed5f81b",
+      "target": "src/mrun/tools/__init__.py"
+    },
+    {
+      "source": "src/mrun/tools/launch_overhead.py",
+      "source_sha256": "637e09e1fbb1b06e68585cf0715c2dbd5bf55cdf65d5fd73ff06a2d546442555",
+      "target": "src/mrun/tools/launch_overhead.py"
+    },
+    {
+      "source": "src/mrun/tools/stream_build.py",
+      "source_sha256": "52156aec0f792a39f8ad9d44d061ffd2ffd22ea40fdb806737042c351ee24947",
+      "target": "src/mrun/tools/stream_build.py"
+    },
+    {
+      "source": "src/mrun/training/__init__.py",
+      "source_sha256": "dbed3259ddff1c6c9fd5149590082384d9eb89b8f3be5d7fefaabb8e3faea074",
+      "target": "src/mrun/training/__init__.py"
+    },
+    {
+      "source": "src/mrun/training/logging.py",
+      "source_sha256": "7a5b83e3ec3bbc51b6b5cb538f29dc3279b88fbbc48e38f8c15628ab4b8015d5",
+      "target": "src/mrun/training/logging.py"
+    },
+    {
+      "source": "src/mrun/training/paged_lora.py",
+      "source_sha256": "514c71a921d58a173f994b6275983880f0bfd9f864407dfd8c4a22b684a3e504",
+      "target": "src/mrun/training/paged_lora.py"
+    },
+    {
+      "source": "src/mrun/training/paged_lora_parity.py",
+      "source_sha256": "9c476da2d43237d71dedfb4e2e4bdb56fcd0e60b0342166f8049c7ffe7110c04",
+      "target": "src/mrun/training/paged_lora_parity.py"
+    },
+    {
+      "source": "tests/test_accel_backends.py",
+      "source_sha256": "8222c32889f1bb7a22f5d2b847c378142656a1ec8928f56f1bade9f5ad89a070",
+      "target": "tests/test_accel_backends.py"
+    },
+    {
+      "source": "tests/test_admission_recommendations.py",
+      "source_sha256": "1d7700c3e7a20cff74d302d785357e78970c7caa73d50370afaacdd48fd932d7",
+      "target": "tests/test_admission_recommendations.py"
+    },
+    {
+      "source": "tests/test_agent_config.py",
+      "source_sha256": "2732b3779ba21d1cdda110546452d5e48cd89fc62a9e160e5d5b91511ebdfde8",
+      "target": "tests/test_agent_config.py"
+    },
+    {
+      "source": "tests/test_agent_payload_pythonpath.py",
+      "source_sha256": "fd7259f3f554ed16098373a343548e0b38f839e1502261667bbeedab6a5a9aed",
+      "target": "tests/test_agent_payload_pythonpath.py"
+    },
+    {
+      "source": "tests/test_agent_pressure.py",
+      "source_sha256": "a27b164b2a78297d45c5d78ba6adca4cff8c7a537d02a033631350af9f883b2e",
+      "target": "tests/test_agent_pressure.py"
+    },
+    {
+      "source": "tests/test_analysis_campaign.py",
+      "source_sha256": "fa78416bd23109c25778999e041816c51f3f8926c080603fd7a67c71ae9974c8",
+      "target": "tests/test_analysis_campaign.py"
+    },
+    {
+      "source": "tests/test_automatic_campaign.py",
+      "source_sha256": "4b972ba11a8f762836b0dd1d6dc8924101b673afa3a149249f2c8c8d0a1130d6",
+      "target": "tests/test_automatic_campaign.py"
+    },
+    {
+      "source": "tests/test_batch_invariant.py",
+      "source_sha256": "87875561cf2fe2ca91d981574e309519ef7ec4739dccf5a7817f4071a8b95553",
+      "target": "tests/test_batch_invariant.py"
+    },
+    {
+      "source": "tests/test_body_only_qstore.py",
+      "source_sha256": "dd1412a0020ddc041de5424d8f249cf32b17b32a6d1a6d925f6507c3815ee75e",
+      "target": "tests/test_body_only_qstore.py"
+    },
+    {
+      "source": "tests/test_campaign_benchmark.py",
+      "source_sha256": "5dc9cac61bd10c53d072ad52cd7fc012175e5a9697947c1f3a566d67fe04bbc5",
+      "target": "tests/test_campaign_benchmark.py"
+    },
+    {
+      "source": "tests/test_candidate_campaign.py",
+      "source_sha256": "1a948055d699456db23e2a323e80bf9a6a477eec095a66b809cc0ca2658adb48",
+      "target": "tests/test_candidate_campaign.py"
+    },
+    {
+      "source": "tests/test_capture_benchmark.py",
+      "source_sha256": "57ca46b48bcfe025525387a11dbdc8cec2574de7d3e96bf73bd1e4cc047331e8",
+      "target": "tests/test_capture_benchmark.py"
+    },
+    {
+      "source": "tests/test_catalog.py",
+      "source_sha256": "15bfd23cfde482813e585699fd25833ad2f05ef8635a6f69948a6c8d95292bf2",
+      "target": "tests/test_catalog.py"
+    },
+    {
+      "source": "tests/test_causal_family_batch.py",
+      "source_sha256": "479bed69ad13d369daf3a04c50ea9408d0c02527fb2522b3bdefdb72058d7c0e",
+      "target": "tests/test_causal_family_batch.py"
+    },
+    {
+      "source": "tests/test_causal_paged.py",
+      "source_sha256": "b861d85a133aaab841ef12387e4ea254a5058fe427e81faef7d3a7b77604e47d",
+      "target": "tests/test_causal_paged.py"
+    },
+    {
+      "source": "tests/test_chat_rendering.py",
+      "source_sha256": "173433b38314bfba3b3694d0a46d6ddbf529420f2cb53f4db2df8944e5de2e7c",
+      "target": "tests/test_chat_rendering.py"
+    },
+    {
+      "source": "tests/test_claims.py",
+      "source_sha256": "2a2dc738df108e22f0b1b6b4e8be6604ecb536b8be16c2e2338657da480803db",
+      "target": "tests/test_claims.py"
+    },
+    {
+      "source": "tests/test_cli_attach_lock.py",
+      "source_sha256": "49310df38a3d549e87b4d9d1d771a5968dfb93d809d55b4b053ac629de98cb4a",
+      "target": "tests/test_cli_attach_lock.py"
+    },
+    {
+      "source": "tests/test_cli_preflight.py",
+      "source_sha256": "a4dfa6e9d81c797491554f9b62507122e7c7840bf44eb678d3c4e0ca261be276",
+      "target": "tests/test_cli_preflight.py"
+    },
+    {
+      "source": "tests/test_client_preflight.py",
+      "source_sha256": "7ce4bf2aa55150cff5870e24e1e12f9b3d70f8fbc23e4d7fd4dd3445f434d138",
+      "target": "tests/test_client_preflight.py"
+    },
+    {
+      "source": "tests/test_client_submit.py",
+      "source_sha256": "5fea83fc1a085f3558cc7360d255c62a028b4b454edb69030b47f1bb55b5d3c7",
+      "target": "tests/test_client_submit.py"
+    },
+    {
+      "source": "tests/test_component_builder.py",
+      "source_sha256": "44f2acc2fce110a7e29e7b6ca8ff2bb9604912af8218c631dd168b5638ecb7f8",
+      "target": "tests/test_component_builder.py"
+    },
+    {
+      "source": "tests/test_component_reactor.py",
+      "source_sha256": "0c7ac8865b2c3e0cb444f429398f0b3957e783ca2a1537995b166d419653263d",
+      "target": "tests/test_component_reactor.py"
+    },
+    {
+      "source": "tests/test_composite_engine_pool.py",
+      "source_sha256": "baa89e37e30242794472ef0228248c679c529a1579daf7808412773d66c83dfb",
+      "target": "tests/test_composite_engine_pool.py"
+    },
+    {
+      "source": "tests/test_composite_qstore.py",
+      "source_sha256": "73029f115f4a4af96ba707f68f13c94131877c73f7427482a4ce4db8de5c9dea",
+      "target": "tests/test_composite_qstore.py"
+    },
+    {
+      "source": "tests/test_composite_workplan.py",
+      "source_sha256": "91829cb114c0dbf93af12b455dba4bd599b1de95a3f87a3a402533df4bfb8d8d",
+      "target": "tests/test_composite_workplan.py"
+    },
+    {
+      "source": "tests/test_cuda_graph_promotions.py",
+      "source_sha256": "25f69c927f960f55bb50613bc752e0dfeb13f262ec35be2714c27151903beea9",
+      "target": "tests/test_cuda_graph_promotions.py"
+    },
+    {
+      "source": "tests/test_debug_branch_adapter.py",
+      "source_sha256": "64350c1f8f2ddf57b6d78d140994750a706622efc7d9099e35a1a8134f5c2f9f",
+      "target": "tests/test_debug_branch_adapter.py"
+    },
+    {
+      "source": "tests/test_decompiler_architecture_breadth.py",
+      "source_sha256": "758cf22f488b3d008df5f40b4372f89c7243fb6e8af5ef8343c5a29f10a29dda",
+      "target": "tests/test_decompiler_architecture_breadth.py"
+    },
+    {
+      "source": "tests/test_decompiler_core.py",
+      "source_sha256": "4c936bd40582ac846d6b7ffdd18b606f88f47304d158929eefe213dafb8af134",
+      "target": "tests/test_decompiler_core.py"
+    },
+    {
+      "source": "tests/test_decompiler_cuda_native.py",
+      "source_sha256": "b1d98b63606c78cd136b5451454fbd08753096f17b2f81d9163f9e8e6fe44fe5",
+      "target": "tests/test_decompiler_cuda_native.py"
+    },
+    {
+      "source": "tests/test_decompiler_emitter.py",
+      "source_sha256": "d7eaf1afcb4c3f87bb330ff8ec02872c48136239f2417b73fd146fe17bf52517",
+      "target": "tests/test_decompiler_emitter.py"
+    },
+    {
+      "source": "tests/test_decompiler_gpt2.py",
+      "source_sha256": "3890f825ee55e047667f316ba6c0f616b88d4be6ab86929c5382835305f73e39",
+      "target": "tests/test_decompiler_gpt2.py"
+    },
+    {
+      "source": "tests/test_decompiler_gpt_neox.py",
+      "source_sha256": "c0ea8eea724d2665b3ded248bb0193c41fee1f516a26639799d5d70acbdc5bff",
+      "target": "tests/test_decompiler_gpt_neox.py"
+    },
+    {
+      "source": "tests/test_decompiler_mamba.py",
+      "source_sha256": "4e369ebfd126a38306b73794d8574536a0666f2d49b34889f0f29bbf9a638317",
+      "target": "tests/test_decompiler_mamba.py"
+    },
+    {
+      "source": "tests/test_decompiler_mamba_reference.py",
+      "source_sha256": "eaa3b3b789fdf12f4f4028abc4f858eaa2fb726e7332d85688fc12eb82bb73e8",
+      "target": "tests/test_decompiler_mamba_reference.py"
+    },
+    {
+      "source": "tests/test_decompiler_mixtral.py",
+      "source_sha256": "2da1fa68c6ae2b9a3c8d5440edaa120708f8c5264dd946c869ac0ee3c50bbb84",
+      "target": "tests/test_decompiler_mixtral.py"
+    },
+    {
+      "source": "tests/test_decompiler_mixtral_stateful.py",
+      "source_sha256": "9c787602dafd81044a180a40196c21eaa044dd530549307d5be467b3fcb80aad",
+      "target": "tests/test_decompiler_mixtral_stateful.py"
+    },
+    {
+      "source": "tests/test_decompiler_mlx_hybrid.py",
+      "source_sha256": "e74b8084690d2c9da5d2f280fcd30d318af386ad5469afa5c84f4755175f7044",
+      "target": "tests/test_decompiler_mlx_hybrid.py"
+    },
+    {
+      "source": "tests/test_decompiler_mlx_lowbit.py",
+      "source_sha256": "4f3542eedd737be165fc6ed08c2a7d7a5f2fad358288a1111172b5ffc842265c",
+      "target": "tests/test_decompiler_mlx_lowbit.py"
+    },
+    {
+      "source": "tests/test_decompiler_mlx_mamba_q4.py",
+      "source_sha256": "d0ef1adf5029f93d4782756af3dd93da3f5875069e03b1924e4bdbbabc344506",
+      "target": "tests/test_decompiler_mlx_mamba_q4.py"
+    },
+    {
+      "source": "tests/test_decompiler_mlx_native.py",
+      "source_sha256": "f0d2b6cd1efa2628d493fa7e946755a8fb21815a995396f5fb02377bb7e57faf",
+      "target": "tests/test_decompiler_mlx_native.py"
+    },
+    {
+      "source": "tests/test_decompiler_plugins.py",
+      "source_sha256": "cc2c0cd1de19ee04f5585d5811a6c07144073bc89b41674f36a05b9a54f6ff1d",
+      "target": "tests/test_decompiler_plugins.py"
+    },
+    {
+      "source": "tests/test_decompiler_qwen35.py",
+      "source_sha256": "fa2be070571dbee7ca7fca7281c94631da93650c505bc6519fd27503e3afad4a",
+      "target": "tests/test_decompiler_qwen35.py"
+    },
+    {
+      "source": "tests/test_decompiler_reference.py",
+      "source_sha256": "c6bb1df81ba2a9d221f35f9eb98121e58842f7d97997d1c65ae2d05b30a932a2",
+      "target": "tests/test_decompiler_reference.py"
+    },
+    {
+      "source": "tests/test_deepseek_v4_stream.py",
+      "source_sha256": "910b5d497bfac3a46a7b9dc65c927b112fecb1587c3088bfb380371c72d200da",
+      "target": "tests/test_deepseek_v4_stream.py"
+    },
+    {
+      "source": "tests/test_dense_cuda_native_runtime.py",
+      "source_sha256": "b1c0195fb09aaac168852891f230c1ed8ff613940beaa46d51166d80b62a92a1",
+      "target": "tests/test_dense_cuda_native_runtime.py"
+    },
+    {
+      "source": "tests/test_dense_qstore_cuda.py",
+      "source_sha256": "1839c74534288453ff0128146614bcb9dffc4aca145e7adab0983c81f4dccc0f",
+      "target": "tests/test_dense_qstore_cuda.py"
+    },
+    {
+      "source": "tests/test_device_loudness.py",
+      "source_sha256": "f020b78e799ad1d40e93f50f09936caaa7e86d26eff2a78f9ad17f31c144ed3b",
+      "target": "tests/test_device_loudness.py"
+    },
+    {
+      "source": "tests/test_diagnostics.py",
+      "source_sha256": "62b77722987d79640b6deb89cf2df87cb98e504b89e245d0aaf1fd1b9f157aa2",
+      "target": "tests/test_diagnostics.py"
+    },
+    {
+      "source": "tests/test_diffusion_10x.py",
+      "source_sha256": "d27bd6c14076a01487e5bcf33b946600e8e694252e53c61753054c50c86ef5e8",
+      "target": "tests/test_diffusion_10x.py"
+    },
+    {
+      "source": "tests/test_diffusion_cache.py",
+      "source_sha256": "720802e3d0d2a2aa80191f1bd04ae571455a8c2574eac0c2a087f9e0f34b6f92",
+      "target": "tests/test_diffusion_cache.py"
+    },
+    {
+      "source": "tests/test_diffusion_io.py",
+      "source_sha256": "f6c759e5aaa401e6192686d250fe9beebe14b940647d74e45f8eebcaaeb01d5e",
+      "target": "tests/test_diffusion_io.py"
+    },
+    {
+      "source": "tests/test_diffusion_native.py",
+      "source_sha256": "18d4200b723ee67be0ad506f0fa624c0477c60f43ce64f9eea3fae13a85d5bf0",
+      "target": "tests/test_diffusion_native.py"
+    },
+    {
+      "source": "tests/test_diffusion_nonflux_checkpoint.py",
+      "source_sha256": "205155e394995619c3eaf6d94d1516aec9f2ea4354b649c90f0298225a93cfbd",
+      "target": "tests/test_diffusion_nonflux_checkpoint.py"
+    },
+    {
+      "source": "tests/test_diffusion_phase.py",
+      "source_sha256": "b5184d11c35675bac6c7807f28bf2d0f61bdf4fa1cadd9655b81c77515f02595",
+      "target": "tests/test_diffusion_phase.py"
+    },
+    {
+      "source": "tests/test_diffusion_program.py",
+      "source_sha256": "c39919aa3a1f7413e971bb75ccfbae6e049fef902a5beb5d8644dff59758dba3",
+      "target": "tests/test_diffusion_program.py"
+    },
+    {
+      "source": "tests/test_diffusion_qstore.py",
+      "source_sha256": "7ca2d7408a62eab3f708fde2ec54eee0cc2990c3673917caa77011b353051f9a",
+      "target": "tests/test_diffusion_qstore.py"
+    },
+    {
+      "source": "tests/test_diffusion_resources.py",
+      "source_sha256": "65d808f4630fe7d9488dd10f32a613d8939de7993b3fe196a6f05061a33d43e6",
+      "target": "tests/test_diffusion_resources.py"
+    },
+    {
+      "source": "tests/test_diffusion_scene.py",
+      "source_sha256": "7006de44239cb7c3ebf83eccf6ef69282dc415e8bc9083b25c6aa390ad464d68",
+      "target": "tests/test_diffusion_scene.py"
+    },
+    {
+      "source": "tests/test_diffusion_tiled.py",
+      "source_sha256": "fe5dd51fa094cdc784acd6921fe82e777498574cb961934226f956a103e45ad0",
+      "target": "tests/test_diffusion_tiled.py"
+    },
+    {
+      "source": "tests/test_diffusion_trajectory_checkpoint.py",
+      "source_sha256": "977d189c643e55ef12ec4c51041e2d1eada84817251a8e731f058976fbe50d4f",
+      "target": "tests/test_diffusion_trajectory_checkpoint.py"
+    },
+    {
+      "source": "tests/test_dispatch_guard.py",
+      "source_sha256": "0216d4c9a6e5c44679f959799496eebf434251150bd74c76ad48930b51c5cc85",
+      "target": "tests/test_dispatch_guard.py"
+    },
+    {
+      "source": "tests/test_engine_gapfill.py",
+      "source_sha256": "1226947832c3f5d6ac6331293ea15e98639afe42b5b127bd9bdcbb14d2751349",
+      "target": "tests/test_engine_gapfill.py"
+    },
+    {
+      "source": "tests/test_engine_helpers.py",
+      "source_sha256": "293cfdf76301e15c67b29ac8199f4683d96454d882f7975843eb5bd65e1a1e09",
+      "target": "tests/test_engine_helpers.py"
+    },
+    {
+      "source": "tests/test_engine_profiles.py",
+      "source_sha256": "60e9e6ecebbfd1c21bb5496acf41d13c08f6921b657f97cde8c606cfed41ba02",
+      "target": "tests/test_engine_profiles.py"
+    },
+    {
+      "source": "tests/test_engine_runtime_reporting.py",
+      "source_sha256": "4abb45a39e270ea1d28f69e8808f0da2becf79624ce13d7616d290b613d7c0b2",
+      "target": "tests/test_engine_runtime_reporting.py"
+    },
+    {
+      "source": "tests/test_estimate.py",
+      "source_sha256": "72f3f15212c1a1be44f004cf6e3d9ad3c76ba9669548ba26ca09d4c35c5fceb4",
+      "target": "tests/test_estimate.py"
+    },
+    {
+      "source": "tests/test_expert_queue.py",
+      "source_sha256": "371c5543c671072903038489e298a46a7637069bc8df91866a42035285408cbe",
+      "target": "tests/test_expert_queue.py"
+    },
+    {
+      "source": "tests/test_fingerprint.py",
+      "source_sha256": "4db46cc4f79afa5ee4d22e1434b24f02a9b4dcaac9a718988df149d149877951",
+      "target": "tests/test_fingerprint.py"
+    },
+    {
+      "source": "tests/test_fleet_integration.py",
+      "source_sha256": "209c43a48806ea1055b71b765e00f15075515bdbd503c2f697e5b0c0af8f3800",
+      "target": "tests/test_fleet_integration.py"
+    },
+    {
+      "source": "tests/test_graph_compiler.py",
+      "source_sha256": "f40ab0b14424dbe4601a6cc2feecc2fa6f82655e6f56453a5303f70d366fb84d",
+      "target": "tests/test_graph_compiler.py"
+    },
+    {
+      "source": "tests/test_graph_pool.py",
+      "source_sha256": "82dd3b4e3e150b79a12cc3a3d0a2c42b27457610f032fe892d6ad6f93b6a6d06",
+      "target": "tests/test_graph_pool.py"
+    },
+    {
+      "source": "tests/test_guard.py",
+      "source_sha256": "e9ea03cc4175fee072ba60404df5103cef0b3f2f71e38b0bd1202d4a47735595",
+      "target": "tests/test_guard.py"
+    },
+    {
+      "source": "tests/test_guarded_admission.py",
+      "source_sha256": "2071be3d44e567cc4d52683fbf331959a2c8eff1f935c6c6acf5262ace9ba6d5",
+      "target": "tests/test_guarded_admission.py"
+    },
+    {
+      "source": "tests/test_hf_subset_head.py",
+      "source_sha256": "45ace408bf77b0045687aeb56db0da97b13aa8e3092ab9c2ad91a1be9ebdb684",
+      "target": "tests/test_hf_subset_head.py"
+    },
+    {
+      "source": "tests/test_hostinfo.py",
+      "source_sha256": "68123089f55f81e5f84006f614ca412017682d01890557f625dde809b438dfa3",
+      "target": "tests/test_hostinfo.py"
+    },
+    {
+      "source": "tests/test_hostinfo_cuda.py",
+      "source_sha256": "2515ca674b938df04db8aa6f9d3b8950ae4eeaa52b9ffad6636961097b1b6b22",
+      "target": "tests/test_hostinfo_cuda.py"
+    },
+    {
+      "source": "tests/test_inference_app.py",
+      "source_sha256": "8598df4eae1ca184295bebede051c9e4cec072d2162eef2a9c19c52b6d3a9edf",
+      "target": "tests/test_inference_app.py"
+    },
+    {
+      "source": "tests/test_inference_cli.py",
+      "source_sha256": "40bfba451145d1e8e3af4e0700e97e628075aec78155f911cd742838f8c173a0",
+      "target": "tests/test_inference_cli.py"
+    },
+    {
+      "source": "tests/test_inference_operations.py",
+      "source_sha256": "a06d5615574f60d205438bb2424fee535c4fe5a6150c57e40d7cf4a2a3362ecf",
+      "target": "tests/test_inference_operations.py"
+    },
+    {
+      "source": "tests/test_job_audit_messages.py",
+      "source_sha256": "5dd73ce13b5219399fcbbf5875aa6fc58e4ba3f4020d3f53103e63faf579de25",
+      "target": "tests/test_job_audit_messages.py"
+    },
+    {
+      "source": "tests/test_kv_statecut.py",
+      "source_sha256": "5444d9fbb48fb4e48358141d76ecd4ebcef29aed3950f1be5db5cff83f46cd21",
+      "target": "tests/test_kv_statecut.py"
+    },
+    {
+      "source": "tests/test_lexical_compiler.py",
+      "source_sha256": "77d5a0af8cd4934b7ea04644722378733c28550399fe2414ec7715f846dc6ce8",
+      "target": "tests/test_lexical_compiler.py"
+    },
+    {
+      "source": "tests/test_lexical_component.py",
+      "source_sha256": "b28f88ce0bb879720b28709ceb6063406661e45154e651fbd643d5551a966797",
+      "target": "tests/test_lexical_component.py"
+    },
+    {
+      "source": "tests/test_light_client_planning.py",
+      "source_sha256": "b29cf1368fa135c424e66f657ef43faafccbacec0421b7a3012ce30bf7ac9eb7",
+      "target": "tests/test_light_client_planning.py"
+    },
+    {
+      "source": "tests/test_linked_qstore.py",
+      "source_sha256": "631337bfe02801547c479a06f8401b2c79f86a750adb3eed05a34722514bc862",
+      "target": "tests/test_linked_qstore.py"
+    },
+    {
+      "source": "tests/test_localrun_diagnostics.py",
+      "source_sha256": "2d02b323d135364232603eeed0182aa9c8ac3a83e66e1e4adde3e8831032ca17",
+      "target": "tests/test_localrun_diagnostics.py"
+    },
+    {
+      "source": "tests/test_mlx_component.py",
+      "source_sha256": "9f6e70052f493299885832a6e83d21411605f1db52956cf1ada17634f948842c",
+      "target": "tests/test_mlx_component.py"
+    },
+    {
+      "source": "tests/test_mlx_generate.py",
+      "source_sha256": "d508e8250b30dec17657b1a3263fa271c71fa4487914c14dfaed4fb0e4aacc3f",
+      "target": "tests/test_mlx_generate.py"
+    },
+    {
+      "source": "tests/test_mlx_greedy_block.py",
+      "source_sha256": "06b3f938e0ec8b4c812e244673e5cacafb94074cbea97592954fc340f89e3521",
+      "target": "tests/test_mlx_greedy_block.py"
+    },
+    {
+      "source": "tests/test_mlx_mamba_runtime.py",
+      "source_sha256": "9ee4ec09e4d175065de62f02a546fc14beee1136144661fe03922d217dbe8725",
+      "target": "tests/test_mlx_mamba_runtime.py"
+    },
+    {
+      "source": "tests/test_mlx_mixtral_expert_paged.py",
+      "source_sha256": "fa5d4a770805094d633e3fcd3406314c9ccd73341aec46805beab90ac7951b43",
+      "target": "tests/test_mlx_mixtral_expert_paged.py"
+    },
+    {
+      "source": "tests/test_mlx_native_runtime.py",
+      "source_sha256": "e4d15fb368ad5f22706eec357dc6a3b919b18657178fa678a0c78479bc206938",
+      "target": "tests/test_mlx_native_runtime.py"
+    },
+    {
+      "source": "tests/test_mlx_paged_attention.py",
+      "source_sha256": "4d7050f66f54a2df531c5715111cc6c56b065856062f7d7c9838ba242e59191c",
+      "target": "tests/test_mlx_paged_attention.py"
+    },
+    {
+      "source": "tests/test_mlx_paged_inference.py",
+      "source_sha256": "678a9dec50101ba56adcc21bb53670c94a3c0c0e6d1f545b7641d201bf5883e0",
+      "target": "tests/test_mlx_paged_inference.py"
+    },
+    {
+      "source": "tests/test_mlx_paged_kv.py",
+      "source_sha256": "3d0d4d4b67a7b6b460fc95529e18b87fc7a859ebc05cb747e4d0d6ad21e9aeeb",
+      "target": "tests/test_mlx_paged_kv.py"
+    },
+    {
+      "source": "tests/test_mlx_quantized_kv.py",
+      "source_sha256": "5bfd3ee4df50afb41c53d7214a2fe03bd4e57f23b4448d721f76d032cda75242",
+      "target": "tests/test_mlx_quantized_kv.py"
+    },
+    {
+      "source": "tests/test_models_local_discovery.py",
+      "source_sha256": "b0b4239de8e39cb37885b088edba490e3101a8a0670db4429c28b2af5f71ace6",
+      "target": "tests/test_models_local_discovery.py"
+    },
+    {
+      "source": "tests/test_moe_mixtral_adapter.py",
+      "source_sha256": "1188e3d45feaa15f0bd8be764550439f4d9cf1d8d08284fb666f42028c67d6e8",
+      "target": "tests/test_moe_mixtral_adapter.py"
+    },
+    {
+      "source": "tests/test_moe_stream.py",
+      "source_sha256": "e199b9245b2e12aa85b5e79024d2359bc25ab8e51f1e607141c4b9fb4bae9048",
+      "target": "tests/test_moe_stream.py"
+    },
+    {
+      "source": "tests/test_moe_stream_dequant.py",
+      "source_sha256": "25b7664d18b68f35d8af1dfb10952819e82110062fcbb98f518bd7811ba4e374",
+      "target": "tests/test_moe_stream_dequant.py"
+    },
+    {
+      "source": "tests/test_multifabric.py",
+      "source_sha256": "5be7639af5df5d29da0ff884621a8e95fa4e19898a4901c9b85cb8ce979edb03",
+      "target": "tests/test_multifabric.py"
+    },
+    {
+      "source": "tests/test_native_benchmark.py",
+      "source_sha256": "43e4dbae6952bd0784ff0df93fdd3809b16581edfacffab3a036c42c5a8b343d",
+      "target": "tests/test_native_benchmark.py"
+    },
+    {
+      "source": "tests/test_native_component_backends.py",
+      "source_sha256": "5177698d8d92d6ca6fd13f1b17ea71246c3eb993c48a97b0829447c3452c9433",
+      "target": "tests/test_native_component_backends.py"
+    },
+    {
+      "source": "tests/test_native_generation_service.py",
+      "source_sha256": "f74b638a14b1b82807a9546e028777154b8972deccc193534f0bcd287481cbe5",
+      "target": "tests/test_native_generation_service.py"
+    },
+    {
+      "source": "tests/test_native_runtime_contracts.py",
+      "source_sha256": "128a997512d6235531c6df583712995a0d3c371f2956c1ac0f8d76121f43af5d",
+      "target": "tests/test_native_runtime_contracts.py"
+    },
+    {
+      "source": "tests/test_native_sampling.py",
+      "source_sha256": "49fa4d246dd40e89e225e18f7a5bc4eb9e0d0a7a29a08b32d1c518c2f1f833ff",
+      "target": "tests/test_native_sampling.py"
+    },
+    {
+      "source": "tests/test_native_speculative_runtime.py",
+      "source_sha256": "1ae6c097dddb5ef97f8e41709f0e833d73afe0ad76de0033282ea97c74d3cd77",
+      "target": "tests/test_native_speculative_runtime.py"
+    },
+    {
+      "source": "tests/test_olmoe_cuda.py",
+      "source_sha256": "0204de26a71ce21edde822bd4faac9d33223bc3771454a221d9ff780ebed1a63",
+      "target": "tests/test_olmoe_cuda.py"
+    },
+    {
+      "source": "tests/test_openai_protocol.py",
+      "source_sha256": "78ca2fcc0e49b40ac6210e11d3061e668f3e6f77bfae1eeebcd56d019f5c8515",
+      "target": "tests/test_openai_protocol.py"
+    },
+    {
+      "source": "tests/test_os_limit.py",
+      "source_sha256": "0a11b1b633d9829f66ea4c5fb767357620d53ebdc93704d8e71f0f813e5f7fe3",
+      "target": "tests/test_os_limit.py"
+    },
+    {
+      "source": "tests/test_paged_component_reactor.py",
+      "source_sha256": "ed5af4169bea93960965c372bd1af92e16f7b0bf974b189511a6f540015a979a",
+      "target": "tests/test_paged_component_reactor.py"
+    },
+    {
+      "source": "tests/test_paged_lora.py",
+      "source_sha256": "647efa33744e6280848218e72df64b992b12ca6ad48298b3e1570bc210194f88",
+      "target": "tests/test_paged_lora.py"
+    },
+    {
+      "source": "tests/test_paged_lora_adapter.py",
+      "source_sha256": "c41a56c9b12e3e3a6b0fe75f84b3464a4a06a3c8a6dedb05da8fe40237fadb11",
+      "target": "tests/test_paged_lora_adapter.py"
+    },
+    {
+      "source": "tests/test_paged_lora_parity.py",
+      "source_sha256": "9fc23b0aff33ed911a2ada1f5b0954f2e0a90d74c858454428340eca5a0c9e56",
+      "target": "tests/test_paged_lora_parity.py"
+    },
+    {
+      "source": "tests/test_paged_output_contract_kv.py",
+      "source_sha256": "455e533a60abaebafc1347c1152d68a79a64d7ea326c6da4f13731aac0723bcd",
+      "target": "tests/test_paged_output_contract_kv.py"
+    },
+    {
+      "source": "tests/test_paged_parity.py",
+      "source_sha256": "71420f179396b163c5b825a0ddacba6744e89b56dcfa859acb6aeb8af4ac0e7c",
+      "target": "tests/test_paged_parity.py"
+    },
+    {
+      "source": "tests/test_patched_rows.py",
+      "source_sha256": "0435b2689a8747d7cf2678eb37b007d142e8cc0d052d8b270150b982ce1b7f2e",
+      "target": "tests/test_patched_rows.py"
+    },
+    {
+      "source": "tests/test_payload_sandbox.py",
+      "source_sha256": "79a57ea72bd9483e8d50910032a028bbb73df53de0faea6525c83225a446a85b",
+      "target": "tests/test_payload_sandbox.py"
+    },
+    {
+      "source": "tests/test_policy.py",
+      "source_sha256": "7e8180451fb50cdbec083f4940780d5886a4d8bcfa7baf76033a3022acee9396",
+      "target": "tests/test_policy.py"
+    },
+    {
+      "source": "tests/test_pooled_paged_kernel.py",
+      "source_sha256": "27c72e43d5b6ef4058be58773e1d6259cff473d8f4a4c2d11c61d3d347a7fad0",
+      "target": "tests/test_pooled_paged_kernel.py"
+    },
+    {
+      "source": "tests/test_prefix_kv.py",
+      "source_sha256": "368d3fd8e4f4143449cdf5103bc4199422801a5ce9dd2bb172e9942e7a1a6815",
+      "target": "tests/test_prefix_kv.py"
+    },
+    {
+      "source": "tests/test_program_family_lifecycle.py",
+      "source_sha256": "4924c55a2e22a453d5d2893d95cde46e4becfe7c5a2ca1d42990ee606f2a0dcf",
+      "target": "tests/test_program_family_lifecycle.py"
+    },
+    {
+      "source": "tests/test_qstore_build.py",
+      "source_sha256": "16fcf5156bf34f642edbf9e63b0208c0d8531ce6ec11f5dd2c34f412e5b91ced",
+      "target": "tests/test_qstore_build.py"
+    },
+    {
+      "source": "tests/test_qstore_cache.py",
+      "source_sha256": "0f54e210e6fc45acddc58af38d6672fa09b9d055d7aa0f950330e33b377287dd",
+      "target": "tests/test_qstore_cache.py"
+    },
+    {
+      "source": "tests/test_qstore_fp32.py",
+      "source_sha256": "ea04eab3e0be3fde0705996ffcb7358e874b8ee4e80efeda08420043c00f39d4",
+      "target": "tests/test_qstore_fp32.py"
+    },
+    {
+      "source": "tests/test_qstore_int2.py",
+      "source_sha256": "263f39fb4e90f5bf278b130a7b798e0d574ddb350174a1e559407b40d64a35b0",
+      "target": "tests/test_qstore_int2.py"
+    },
+    {
+      "source": "tests/test_qstore_int3.py",
+      "source_sha256": "6f3e2f289c74a1bac10e778ccd91e5e68f267ce15338dc21d83ff493cb8dfea3",
+      "target": "tests/test_qstore_int3.py"
+    },
+    {
+      "source": "tests/test_qstore_lexical_binding.py",
+      "source_sha256": "e5b074a17c15f01cf659d3cd62319b2e84056b56908c6bd549264620c5470c54",
+      "target": "tests/test_qstore_lexical_binding.py"
+    },
+    {
+      "source": "tests/test_qstore_lifecycle.py",
+      "source_sha256": "97c0ec655d46d6fc29c550c0bb56a474ad49bf5f1f75ea81971ea5d60607c16f",
+      "target": "tests/test_qstore_lifecycle.py"
+    },
+    {
+      "source": "tests/test_qwen35_statecut.py",
+      "source_sha256": "5bf2e060536647eb15416af5480f667c254796351ef1432fdf977d69f562d310",
+      "target": "tests/test_qwen35_statecut.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_cli.py",
+      "source_sha256": "f873b61e89cac633a11b01e21bcf995a6c0e7a4d659e3ce08bb101f3201a8f1a",
+      "target": "tests/test_qwen3_moe_cli.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_continuous.py",
+      "source_sha256": "cfe23a4ace0f2036ad1e362d806984f5cda4a8e5adcba1495af782fe3db3e97c",
+      "target": "tests/test_qwen3_moe_continuous.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_cuda.py",
+      "source_sha256": "b7747e2c5b772d90e09f1e8940055eb291a3cf50368a1524d0e676e06a6faa13",
+      "target": "tests/test_qwen3_moe_cuda.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_page_trace.py",
+      "source_sha256": "ded64549869f308d85b7401c5f6e343e1e5d56de1e775de8abb1ffe9256dd5ef",
+      "target": "tests/test_qwen3_moe_page_trace.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_ragged_decode.py",
+      "source_sha256": "40000268bd4575dd31fd991e2d477b3edf8706c522d780ee3c14fd931cb22250",
+      "target": "tests/test_qwen3_moe_ragged_decode.py"
+    },
+    {
+      "source": "tests/test_qwen3_moe_statecut.py",
+      "source_sha256": "e0a6699e381ecd8ab5bddb54ce9e6bba53cb4db1697ebb9f551f59a7047fedf5",
+      "target": "tests/test_qwen3_moe_statecut.py"
+    },
+    {
+      "source": "tests/test_reservation.py",
+      "source_sha256": "0d43a05fdfafede0ce2e91238ef9f2cbaa0056fc6def2160d5f12fccbee8bfa8",
+      "target": "tests/test_reservation.py"
+    },
+    {
+      "source": "tests/test_resident_advanced.py",
+      "source_sha256": "d8e2223044e56801b093b4eed8d43050d484504c26d462402d8fb904c134a6cb",
+      "target": "tests/test_resident_advanced.py"
+    },
+    {
+      "source": "tests/test_resident_phase_evidence.py",
+      "source_sha256": "339b82245a437dce600f9c09a1a5066ab338292deeea568c788c72c725212f9b",
+      "target": "tests/test_resident_phase_evidence.py"
+    },
+    {
+      "source": "tests/test_resident_program.py",
+      "source_sha256": "d38473afd8a8c2bb84b7f448f4139cc8ef7892aa8f01c4403036f191fa552439",
+      "target": "tests/test_resident_program.py"
+    },
+    {
+      "source": "tests/test_resident_worker.py",
+      "source_sha256": "134f9013ad95353c5e9edcb36bc757f4c7fba38421621727b1afd2a219097eed",
+      "target": "tests/test_resident_worker.py"
+    },
+    {
+      "source": "tests/test_resources.py",
+      "source_sha256": "f28ed48e01f14a637bd171bbc0485af41fd70bc70aee46fc76644cb0c4158089",
+      "target": "tests/test_resources.py"
+    },
+    {
+      "source": "tests/test_ring_and_host_tier.py",
+      "source_sha256": "a618df4e8c7c5a4105199d00f34ae9e57c277125c5facf34aea30b17e44429af",
+      "target": "tests/test_ring_and_host_tier.py"
+    },
+    {
+      "source": "tests/test_rope_theta.py",
+      "source_sha256": "d4772849345742a0fea024d10d4681c5fa94d90ae8589275fcfde99b365256da",
+      "target": "tests/test_rope_theta.py"
+    },
+    {
+      "source": "tests/test_saturn_kernels.py",
+      "source_sha256": "c0446ecf92e08f6b593f9cd7c1c33db43febdc5583bda0d4f2eab47f1c1f0f36",
+      "target": "tests/test_saturn_kernels.py"
+    },
+    {
+      "source": "tests/test_scheduler.py",
+      "source_sha256": "d3639813f57fab6b24c4ef52a89b0bd59f45f517486399b1c8fc6f89bcd0dc4d",
+      "target": "tests/test_scheduler.py"
+    },
+    {
+      "source": "tests/test_science_config.py",
+      "source_sha256": "e0549aa434d35f0ac963aafe8084f123f10b634f0410f0d5097a330b3cfb75ff",
+      "target": "tests/test_science_config.py"
+    },
+    {
+      "source": "tests/test_science_runtime.py",
+      "source_sha256": "e610ca276b01f0021e6dadcdbd076f6888f87ad9ab4c5fa862c83b11a6794145",
+      "target": "tests/test_science_runtime.py"
+    },
+    {
+      "source": "tests/test_sciencegraph.py",
+      "source_sha256": "da9386b6094e28c07fa23c12a61f48bcedde0cb1b70b967ada5ea9abacb5416d",
+      "target": "tests/test_sciencegraph.py"
+    },
+    {
+      "source": "tests/test_sciencegraph_cohort.py",
+      "source_sha256": "f7d1ab6785f57106638a5d927b900a3d9f9f0a39572fcca8c7ccb8d9322ce9f2",
+      "target": "tests/test_sciencegraph_cohort.py"
+    },
+    {
+      "source": "tests/test_selector.py",
+      "source_sha256": "1f675b791d379114f3b1c347e20f532b84d81d9a297e89bd1600058a0b28d1b3",
+      "target": "tests/test_selector.py"
+    },
+    {
+      "source": "tests/test_server_db.py",
+      "source_sha256": "387f733dbd84afcc77a2d00724696c3fc591c38c3295764d0c757fe581f758ee",
+      "target": "tests/test_server_db.py"
+    },
+    {
+      "source": "tests/test_server_history_endpoint.py",
+      "source_sha256": "eb2c659d8903d2cacab6a19d6f53e97f23f07648a8ddf1cd5b5ca42a37ac307c",
+      "target": "tests/test_server_history_endpoint.py"
+    },
+    {
+      "source": "tests/test_server_job_diagnostics.py",
+      "source_sha256": "2ad9984af547d8ff450d78d066b4c9ffcce0b9d7966348a5ee847589e645e8fa",
+      "target": "tests/test_server_job_diagnostics.py"
+    },
+    {
+      "source": "tests/test_signature_gate.py",
+      "source_sha256": "58267891bd9fff0191445d388c1a2c055b4b8ae08a6c225eb530494627baec12",
+      "target": "tests/test_signature_gate.py"
+    },
+    {
+      "source": "tests/test_store_provenance.py",
+      "source_sha256": "b0e53289a73c31fc52f049ffc224b47cbaeb3c78089a5d3f5530a9ef99f6b5ec",
+      "target": "tests/test_store_provenance.py"
+    },
+    {
+      "source": "tests/test_stream_build.py",
+      "source_sha256": "d9d1807ecf6df9cb252fa64bad677c1bd5d267250907f05b13f27c78fcb83913",
+      "target": "tests/test_stream_build.py"
+    },
+    {
+      "source": "tests/test_submit_preflight.py",
+      "source_sha256": "ffa31b1b7dc9cf36b8be956458eac1a49d2376e410ff8bafbb44a481c4304a63",
+      "target": "tests/test_submit_preflight.py"
+    },
+    {
+      "source": "tests/test_temporal_state.py",
+      "source_sha256": "cd6e0d8c0dea678d8443f969716652cfc185ac58e606dd45801f22fd9c511979",
+      "target": "tests/test_temporal_state.py"
+    },
+    {
+      "source": "tests/test_token_address_map.py",
+      "source_sha256": "6fa886bc60a3199626d39b389ab7ee03f87b0d7fbccb5389b6e5eb3024f00d46",
+      "target": "tests/test_token_address_map.py"
+    },
+    {
+      "source": "tests/test_typed_capture_workplan.py",
+      "source_sha256": "b4fd7bc272d41ec23de3e961104eea98174f53a81ac1bf63a4a1af9a523f03a0",
+      "target": "tests/test_typed_capture_workplan.py"
+    },
+    {
+      "source": "tests/test_w8a8.py",
+      "source_sha256": "53efe77433e41bc98760df7f425021cde1747980713aaa3bd2601d097753f868",
+      "target": "tests/test_w8a8.py"
+    },
+    {
+      "source": "tests/test_work_template_binding.py",
+      "source_sha256": "1b1963857168c2cf1c66d6a03ad3ab62bf8cfcbf02ae150dbe774e165a545d6d",
+      "target": "tests/test_work_template_binding.py"
+    },
+    {
+      "source": "tests/test_workplan.py",
+      "source_sha256": "8a45e2428634de119d3211a301f66abebe9dbdf6cc718260c7406e2da8aae70a",
+      "target": "tests/test_workplan.py"
+    },
+    {
+      "source": "tests/test_workplan_compiler.py",
+      "source_sha256": "2643ad61dcf0cd9c9cdc1a72a1d6d735fdcc4ef85dfcc050b8654b37931015ed",
+      "target": "tests/test_workplan_compiler.py"
+    }
+  ],
+  "excluded": [
+    ".gitignore",
+    "AGENTS.md",
+    "PROVENANCE.md",
+    "README.md",
+    "README.md.bak",
+    "configs/science/qwen2.5-0.5b-small.yaml",
+    "configs/science/qwen3-30b-a3b.yaml",
+    "configs/science/qwen3-8b-comparison.yaml",
+    "configs/science/qwen3.5-0.8b-small.yaml",
+    "configs/science/qwen38-27b-comparison.yaml",
+    "demos/fingerprint_lineup_demo.py",
+    "demos/forward_demo.py",
+    "deploy/Dockerfile",
+    "deploy/deploy.sh",
+    "deploy/deploy.sh.bak",
+    "deploy/docker-compose.yml",
+    "docs/20260814-142258-mrun-control-plane-roadmap.md",
+    "docs/API.md",
+    "docs/API.md.bak",
+    "docs/APPLE-RUNTIME.md",
+    "docs/ARCHITECTURE.md",
+    "docs/BATCH-INVARIANT.md",
+    "docs/DECOMPILER-ADAPTER-PLUGINS.md",
+    "docs/DENSE-QSTORE-CUDA.md",
+    "docs/DIFFUSERS-PHASE-CUDA.md",
+    "docs/DIFFUSION-PROGRAM.md",
+    "docs/DISPATCH-GUARD-PATCH.md",
+    "docs/ENGINE-SELECTION.md",
+    "docs/LEXICAL_COMPONENTS.md",
+    "docs/NATIVE-INFERENCE.md",
+    "docs/OLMOE-CUDA.md",
+    "docs/OPEN-WORK.md",
+    "docs/OVERVIEW.md",
+    "docs/PROFILE.md",
+    "docs/QWEN3-MOE-CUDA.md",
+    "docs/RUN-DATA.md",
+    "docs/SCIENTIFIC-BENCHMARKS.md",
+    "docs/STREAM-BUILD.md",
+    "docs/SURFACE.md",
+    "docs/TRANSACTIONAL-MICROSCOPE.md",
+    "docs/WORKPLAN.md",
+    "docs/dx.md",
+    "docs/evidence/2026-07-23-qwen-candidate-campaign.md",
+    "docs/evidence/2026-07-23-qwen-graph-output-slicing.md",
+    "docs/evidence/2026-07-23-qwen-work-floor.md",
+    "docs/evidence/2026-07-23-qwen-workplan-campaign-cuda.md",
+    "docs/evidence/2026-07-23-qwen3-moe-first-class-cuda.md",
+    "docs/evidence/2026-07-23-qwen3-moe-first-class-tiny-smoke.json",
+    "docs/evidence/2026-07-24-apple-runtime-rework.md",
+    "docs/evidence/2026-07-24-coreml-placement.json",
+    "docs/evidence/2026-07-28-mlx-native-serving.md",
+    "docs/evidence/2026-08-04-capability-atlas-v1.json",
+    "docs/evidence/2026-08-04-capability-atlas-v1.md",
+    "docs/evidence/2026-08-04-generational-capability-matrix-v1.json",
+    "docs/evidence/2026-08-04-generational-capability-matrix-v1.md",
+    "docs/evidence/2026-08-04-layerwise-readout-probe-v1.json",
+    "docs/evidence/2026-08-05-flux-compile-summary.json",
+    "docs/evidence/2026-08-05-flux-cosine-suite-summary.json",
+    "docs/evidence/2026-08-05-flux-full-stack-cosine-summary-v2.json",
+    "docs/evidence/2026-08-05-flux-full-stack-cosine-summary-v3.json",
+    "docs/evidence/2026-08-05-flux-full-stack-cosine-summary.json",
+    "docs/evidence/2026-08-05-flux-pair-cosine.json",
+    "docs/evidence/2026-08-05-flux-precision-summary.json",
+    "docs/evidence/2026-08-05-flux-serving-max-summary.json",
+    "docs/evidence/2026-08-05-flux2-klein-program-benchmark-interop.json",
+    "docs/evidence/2026-08-05-flux2-klein-program-benchmark.json",
+    "docs/evidence/2026-08-05-native-10x-stack-benchmark.json",
+    "docs/evidence/2026-08-05-native-hierarchical-routed-benchmark-wide.json",
+    "docs/evidence/2026-08-06-saturn-experiment-matrix.json",
+    "docs/evidence/2026-08-06-saturn-flux-factorial-stack-expanded-summary.json",
+    "docs/evidence/2026-08-06-saturn-flux-factorial-stack-summary.json",
+    "docs/evidence/2026-08-06-saturn-native-matrix-summary.json",
+    "docs/evidence/2026-08-06-saturn-real-flux-matrix-summary.json",
+    "docs/evidence/2026-08-06-saturn-roadmap-execution.json",
+    "docs/evidence/automatic-campaign-qwen25-0.5b-v3-cpu-30x-v1.json",
+    "docs/evidence/cuda-graph-cli-4dc54fcd1048.json",
+    "docs/evidence/cuda-graph-deployment-4dc54fcd1048.json",
+    "docs/evidence/cuda-graph-primary-4dc54fcd1048.json",
+    "docs/evidence/cuda-graph-promotions-4dc54fcd1048.json",
+    "docs/evidence/cuda-graph-qwen25-05b-779c0b75.json",
+    "docs/evidence/diffusers-phase-cuda-klein4b-smoke.json",
+    "docs/evidence/profile-fusion-qwen25-0.5b-cuda-v1.json",
+    "docs/evidence/resident-batch-qwen25-0.5b-cuda-v1.json",
+    "docs/evidence/resident-batch-service-qwen25-0.5b-cuda-v1.json",
+    "docs/evidence/resident-sciencegraph-qwen25-0.5b-cuda-v1.json",
+    "docs/evidence/sciencegraph-debugger-smoke-20260820.json",
+    "docs/evidence/sciencegraph-qwen25-0.5b-v3-cpu-30x-v2.json",
+    "docs/evidence/sciencegraph-qwen25-0.5b-v3-graph-30x-v2.json",
+    "issues.jsonl",
+    "issues.md",
+    "pyproject.toml",
+    "scripts/benchmark_native_10x.py",
+    "scripts/benchmark_native_image_program.py",
+    "scripts/benchmark_paged_row_stable_pool.py",
+    "scripts/build_body_only_qstore.py",
+    "scripts/build_token_address_map.py",
+    "scripts/com.jakeholl.mrun-agent.plist.tmpl",
+    "scripts/com.jakeholl.mrun-inference.plist.tmpl",
+    "scripts/compare_flux_pair.py",
+    "scripts/compile_cross_model_lexical.py",
+    "scripts/inference-args.example",
+    "scripts/install-agent.sh",
+    "scripts/install-inference-service.sh",
+    "scripts/mrun-agent.service.tmpl",
+    "scripts/mrun-inference.service.tmpl",
+    "scripts/replay_qwen3_moe_page_trace.py",
+    "scripts/run-inference-service.sh",
+    "scripts/run_automatic_campaign_gate.py",
+    "scripts/run_beast_activation_prefetch_gate.py",
+    "scripts/run_capability_atlas.py",
+    "scripts/run_generational_capability_matrix.py",
+    "scripts/run_layerwise_readout_probe.py",
+    "scripts/run_profile_fusion_gate.py",
+    "scripts/run_qwen38_benchmark.py",
+    "scripts/run_resident_batch_gate.py",
+    "scripts/run_resident_batch_service_gate.py",
+    "scripts/run_resident_sciencegraph_gate.py",
+    "scripts/run_sciencegraph_debugger_smoke.py",
+    "scripts/run_sciencegraph_gate.py",
+    "scripts/run_sciencegraph_kv_gate.py",
+    "scripts/submit_beast_activation_prefetch_gate.py",
+    "scripts/submit_native_10x_benchmark.py",
+    "scripts/submit_profile_fusion_gate.py",
+    "scripts/submit_resident_batch_gate.py",
+    "scripts/submit_resident_batch_service_gate.py",
+    "scripts/submit_resident_sciencegraph_gate.py",
+    "scripts/try_cross_model_lexical.py",
+    "scripts/try_native_lexical_shell.py",
+    "scripts/validate_cuda_graph_primary.py",
+    "src/mrun/agent/config.py.bak",
+    "src/mrun/client/api.py.bak",
+    "src/mrun/decode/__init__.py",
+    "src/mrun/decode/_paths.py",
+    "src/mrun/decode/architecture.py",
+    "src/mrun/decode/attention.py",
+    "src/mrun/decode/control_dissociate.py",
+    "src/mrun/decode/decode.py",
+    "src/mrun/decode/graft_decode.py",
+    "src/mrun/decode/loaders.py",
+    "src/mrun/decode/metrics.py",
+    "src/mrun/decode/mlp_dag.py",
+    "src/mrun/decode/mlp_families.py",
+    "src/mrun/decode/model_physical.py",
+    "src/mrun/decode/report.py",
+    "src/mrun/decode/roles.py",
+    "src/mrun/decode/rosetta_roles.py",
+    "src/mrun/decode/slm_scan.py",
+    "src/mrun/decode/spectral_code.py",
+    "src/mrun/dx.py",
+    "src/mrun/dx_cas.py",
+    "src/mrun/dx_custody.py",
+    "src/mrun/mlops/__init__.py",
+    "src/mrun/mlops/env.py",
+    "src/mrun/mlops/env.py.bak",
+    "src/mrun/mlops/postprocess.py",
+    "src/mrun/mlops/publish.py",
+    "src/mrun/mlops/registry.py",
+    "src/mrun/mlops/sink.py",
+    "src/mrun/mlops/tracking.py",
+    "src/mrun/mri/__init__.py",
+    "src/mrun/mri/api.py",
+    "src/mrun/mri/card.py",
+    "src/mrun/mri/moe.py",
+    "src/mrun/mri/paged.py",
+    "src/mrun/mri/salience.py",
+    "src/mrun/recorder/__init__.py",
+    "src/mrun/recorder/_util.py",
+    "src/mrun/recorder/attention.py",
+    "src/mrun/recorder/attention_heads.py",
+    "src/mrun/recorder/banks.py",
+    "src/mrun/recorder/candidates.py",
+    "src/mrun/recorder/capture.py",
+    "src/mrun/recorder/causal_heads.py",
+    "src/mrun/recorder/causal_mlp.py",
+    "src/mrun/recorder/common/__init__.py",
+    "src/mrun/recorder/common/ablation.py",
+    "src/mrun/recorder/common/axes.py",
+    "src/mrun/recorder/common/inputs.py",
+    "src/mrun/recorder/common/leverage.py",
+    "src/mrun/recorder/common/nulls.py",
+    "src/mrun/recorder/common/tensors.py",
+    "src/mrun/recorder/content_axes.py",
+    "src/mrun/recorder/physiology.py",
+    "src/mrun/recorder/prompt_conditioned.py",
+    "src/mrun/recorder/prose.py",
+    "src/mrun/recorder/tasks.py",
+    "src/mrun/render/__init__.py",
+    "src/mrun/render/atlas3d.py",
+    "src/mrun/render/causal_map3d.py",
+    "src/mrun/render/hierarchy3d.py",
+    "src/mrun/render/relational3d.py",
+    "src/mrun/render/weather_maps.py",
+    "src/mrun/server/app.py.bak",
+    "src/mrun/tapes/__init__.py",
+    "src/mrun/tapes/bridge.py",
+    "src/mrun/tapes/store.py",
+    "tests/test_decode.py",
+    "tests/test_dx.py",
+    "tests/test_manalysis_delegation.py",
+    "tests/test_mlops.py",
+    "tests/test_mri.py",
+    "tests/test_postprocess.py",
+    "tests/test_prompt_conditioned.py",
+    "tests/test_recorder_acceptance.py",
+    "tests/test_recorder_device.py",
+    "tests/test_render.py",
+    "tests/test_tapes_sink.py",
+    "uv.lock"
+  ],
+  "includes_working_tree": true,
+  "public_exclusions_after_snapshot": [
+    "src/mrun/analysis_campaign.py",
+    "tests/test_analysis_campaign.py",
+    "tests/test_moe_mixtral_adapter.py",
+    "tests/test_causal_family_batch.py",
+    "src/mrun/training/logging.py"
+  ],
+  "schema": "mrun-public-source-snapshot.v1",
+  "source_commit": "f002ce776e14143114e232ed6af872808a3de160"
+}

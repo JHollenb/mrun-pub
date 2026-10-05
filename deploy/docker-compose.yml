@@ -1,0 +1,15 @@
+services:
+  scheduler:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "127.0.0.1:9025:9025"
+    environment:
+      MRUN_TOKEN: "${MRUN_TOKEN:?Set MRUN_TOKEN}"
+      MRUN_AGENT_TOKEN: "${MRUN_AGENT_TOKEN:?Set independent MRUN_AGENT_TOKEN}"
+    volumes:
+      - scheduler-data:/data
+    restart: unless-stopped
+volumes:
+  scheduler-data:

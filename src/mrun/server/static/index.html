@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mrun fleet</title>
+<style>
+  :root { color-scheme: light dark;
+    --bg:#fff; --fg:#1a1a1a; --muted:#667; --line:#ddd; --card:#f6f7f9;
+    --ok:#2f7d4f; --warn:#a15c00; --bad:#a3333d; --bar:#5b7fa6; --chip:#e8ebf0; }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg:#14161a; --fg:#e4e6ea; --muted:#99a; --line:#333; --card:#1d2026; --chip:#2a2e36; }}
+  body { font: 14px/1.45 ui-sans-serif, system-ui; margin:0; background:var(--bg); color:var(--fg); }
+  header { padding:10px 16px; border-bottom:1px solid var(--line); display:flex; gap:16px; align-items:baseline; flex-wrap:wrap;}
+  h1 { font-size:16px; margin:0; } h2 { font-size:14px; margin:0 0 8px; }
+  header nav { margin-left:auto; display:flex; gap:12px; }
+  header nav a { color:var(--muted); text-decoration:none; border-bottom:1px dotted var(--muted); }
+  main { display:grid; grid-template-columns: 360px 1fr; gap:16px; padding:16px; }
+  section.logs { grid-column: 1 / -1; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:12px; }
+  .card.stale { opacity:.55; }
+  table { border-collapse:collapse; width:100%; }
+  th,td { text-align:left; padding:3px 8px 3px 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums; vertical-align:top; }
+  th { color:var(--muted); font-weight:500; }
+  .barrow { display:flex; align-items:center; gap:8px; margin:3px 0; }
+  .barrow > span:first-child { color:var(--muted); width:38px; flex:none; font-size:12px; }
+  .barrow > span:last-child { color:var(--muted); font-size:12px; white-space:nowrap; }
+  .bar { background:var(--line); border-radius:4px; height:10px; overflow:hidden; flex:1; position:relative; }
+  .bar > div { height:100%; background:var(--bar); }
+  .bar > div.hot { background:var(--bad); }
+  .bar > div.commit { position:absolute; top:0; left:0; opacity:.45; }
+  .muted { color:var(--muted); } .ok { color:var(--ok);} .bad { color:var(--bad);} .warn{color:var(--warn);}
+  button { font:inherit; padding:1px 8px; border-radius:5px; border:1px solid var(--line); background:var(--bg); color:var(--fg); cursor:pointer; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .statusline { margin-bottom:8px; }
+  pre#log { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px;
+    max-height:45vh; overflow:auto; white-space:pre-wrap; font:12px/1.4 ui-monospace, monospace; }
+  select { font:inherit; background:var(--bg); color:var(--fg); border:1px solid var(--line); border-radius:5px; }
+  a { color:inherit; }
+  .overflow { overflow-x:auto; }
+  .chip { display:inline-block; background:var(--chip); border:1px solid var(--line); border-radius:4px;
+    padding:0 5px; margin:0 3px 2px 0; font:12px/1.5 ui-monospace, monospace; white-space:nowrap; }
+  .chip.cuda { border-color:var(--ok); }
+  #queue li { list-style:none; display:flex; gap:8px; align-items:baseline; padding:4px 6px;
+    border:1px solid var(--line); border-radius:6px; margin:4px 0; background:var(--bg); cursor:grab; }
+  #queue li.dragging { opacity:.4; }
+  #queue li.dropTarget { border-color:var(--bar); border-style:dashed; }
+  #queue { margin:0; padding:0; }
+  .grip { color:var(--muted); cursor:grab; font:14px ui-monospace,monospace; user-select:none; }
+  .detail { background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:8px; margin:4px 0; }
+  .detail pre { margin:4px 0; font:11px/1.4 ui-monospace, monospace; white-space:pre-wrap; max-height:200px; overflow:auto; }
+  .detail .links a { margin-right:12px; border-bottom:1px dotted var(--muted); text-decoration:none; }
+  .expander { cursor:pointer; user-select:none; color:var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>mrun fleet</h1>
+  <span class="muted" id="updated"></span>
+  <nav id="svcnav"></nav>
+</header>
+<main>
+  <section id="hosts"></section>
+  <section>
+    <div class="card">
+      <h2>shutdown</h2>
+      <div id="controlStatus" class="muted statusline">loading control state…</div>
+      <div class="actions"><button id="drainButton" data-drain-toggle="1">drain for shutdown</button></div>
+    </div>
+    <div class="card">
+      <h2>queue <span class="muted" id="queueHint" style="font-weight:400;font-size:12px">drag to re-prioritize</span></h2>
+      <ul id="queue"></ul>
+      <div class="muted" id="queueEmpty" style="display:none">nothing queued</div>
+    </div>
+    <div class="card">
+      <h2>jobs <select id="stateFilter">
+        <option value="">all</option><option>queued</option><option>running</option>
+        <option>assigned</option><option>succeeded</option><option>failed</option>
+        <option>killed_ram</option><option>killed_vram</option><option>lost</option><option>cancelled</option>
+      </select></h2>
+      <div class="overflow"><table id="jobs"></table></div>
+    </div>
+  </section>
+  <section class="logs">
+    <h2 id="logTitle" class="muted">select a job to tail its log</h2>
+    <pre id="log"></pre>
+  </section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+let logJob = null, logOffset = 0, logInflight = false;
+let controlState = null;                // /api/control (shutdown drain)
+const expanded = new Set();             // expanded job rows survive refresh
+const TERMINAL = new Set(['succeeded','failed','killed_ram','killed_vram','timeout','lost','cancelled']);
+const STALE_S = 900;                    // telemetry older than this = host asleep/gone
+const fmtGB = mb => (mb/1000).toFixed(1);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function ago(ts) {
+  if (!ts) return '—';
+  const s = Math.round(Date.now()/1000 - ts);
+  if (s < 90) return s + 's ago';
+  if (s < 5400) return Math.round(s/60) + 'm ago';
+  if (s < 129600) return (s/3600).toFixed(1) + 'h ago';
+  return (s/86400).toFixed(1) + 'd ago';
+}
+// optional shared-token mode: localStorage.setItem('mrun_token', '…') once per browser
+const TOKEN = localStorage.getItem('mrun_token');
+function api(path, opts = {}) {
+  if (TOKEN) opts.headers = {...(opts.headers||{}), 'X-Mrun-Token': TOKEN};
+  return fetch(path, opts);
+}
+
+async function refreshControl() {
+  controlState = await (await api('/api/control')).json();
+  const state = controlState.draining
+    ? (controlState.safe_to_shutdown
+      ? '<span class="ok">safe to power off</span>'
+      : '<span class="warn">draining</span>')
+    : '<span class="muted">leasing active</span>';
+  const active = controlState.active === 1 ? '1 active job' : `${controlState.active} active jobs`;
+  const queued = controlState.queued === 1 ? '1 queued job' : `${controlState.queued} queued jobs`;
+  $('#controlStatus').innerHTML = `${state} · ${active} · ${queued}`;
+  const btn = $('#drainButton');
+  btn.textContent = controlState.draining ? 'resume leasing' : 'drain for shutdown';
+  btn.dataset.drainToggle = controlState.draining ? '0' : '1';
+}
+
+async function setDrain(enabled) {
+  const r = await api('/api/control', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({draining: enabled, reason: enabled ? 'ui-shutdown-drain' : 'ui-resume'}),
+  });
+  if (!r.ok) { alert(`control update failed: ${r.status} ${await r.text()}`); return; }
+  await Promise.all([refreshControl(), refreshQueue(), refreshJobs()]);
+}
+
+// ------------------------------------------------------------------ hosts
+function bar(label, pct, text, {hot=85, commitPct=null} = {}) {
+  const p = Math.min(100, Math.max(0, pct||0));
+  const commit = commitPct != null
+    ? `<div class="commit" style="width:${Math.min(100, commitPct)}%"></div>` : '';
+  return `<div class="barrow"><span>${label}</span>
+    <div class="bar">${commit}<div class="${p>hot?'hot':''}" style="width:${p}%"></div></div>
+    <span>${text}</span></div>`;
+}
+
+const limitsOpen = new Set();   // hosts with the limits editor open — pause repaints
+
+function limitsFormHtml(h) {
+  const L = h.limits || {};
+  const v = x => x == null ? '' : x;
+  return `<div class="detail" data-limits-form="${esc(h.name)}">
+    <b>operator limits</b> <span class="muted">(live — no restart; blank = default)</span>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 8px;margin:6px 0;font-size:12px">
+      <label>ram margin MB (≥1024)</label><input data-lk="ram_margin_mb" type="number" min="1024" value="${v(L.ram_margin_mb)}">
+      <label>vram margin MB</label><input data-lk="vram_margin_mb" type="number" min="0" value="${v(L.vram_margin_mb)}">
+      <label>max concurrent</label><input data-lk="max_concurrent" type="number" min="1" value="${v(L.max_concurrent)}">
+      <label>enabled</label><input data-lk="enabled" type="checkbox" ${L.enabled === false ? '' : 'checked'}>
+    </div>
+    <div class="actions">
+      <button data-save-limits="${esc(h.name)}">save</button>
+      <button data-close-limits="${esc(h.name)}">close</button>
+    </div>
+  </div>`;
+}
+
+async function refreshHosts(force = false) {
+  if (limitsOpen.size && !force) return;   // don't wipe an open editor mid-typing
+  const hosts = await (await api('/api/hosts')).json();
+  const now = Date.now()/1000;
+  // stable order: by name only — sorting on telemetry.ts made cards swap every tick
+  hosts.sort((a,b) => a.name.localeCompare(b.name));
+  $('#hosts').innerHTML = hosts.map(h => {
+    const t = h.telemetry || {};
+    const adm = h.admission || {};
+    const disabled = adm.enabled === false ? ' <span class="bad">DISABLED</span>' : '';
+    const stale = !t.ts || (now - t.ts) > STALE_S;
+    if (stale) {
+      return `<div class="card stale">
+        <h2>${esc(h.name)}${disabled} <span class="muted" style="font-weight:400">offline · seen ${ago(t.ts || h.last_seen_ts)}</span>
+        <button style="float:right" data-remove-host="${esc(h.name)}">remove</button></h2>
+        <div class="muted">ram ${fmtGB(h.ram_total_mb)}GB${h.vram_total_mb ? ' · vram ' + fmtGB(h.vram_total_mb) + 'GB' : ''} · ${(h.models||[]).length} warm models</div>
+      </div>`;
+    }
+    const used = h.ram_total_mb - (t.ram_free_mb || 0);
+    const pressure = t.pressure_external ? '<span class="bad">PRESSURE (out-of-band)</span>'
+      : t.mem_pressure >= 2 ? '<span class="bad">PRESSURE</span>'
+      : ((t.swap_used_mb||0) > 2048 ? '<span class="warn">swap</span>' : '');
+    const cpuTxt = `${(t.cpu_pct??0).toFixed(0)}% · load ${(t.load1??0).toFixed(1)}/${h.cpu_threads||'?'}`;
+    let vramBar = '';
+    if (h.vram_total_mb > 0 && t.vram_free_mb != null) {
+      const vUsed = h.vram_total_mb - t.vram_free_mb;
+      vramBar = bar('vram', 100*vUsed/h.vram_total_mb, `${fmtGB(vUsed)} / ${fmtGB(h.vram_total_mb)}GB`);
+    }
+    const disks = (t.disks||[]).map(d =>
+      `<tr><td class="muted">${esc(d.mount)}</td><td>${d.free_gb} / ${d.total_gb} GB free</td></tr>`).join('');
+    const models = (h.models||[]).map(m => `${m.model}${m.kind==='qstore' ? ' (qstore)' : ''}`);
+    const liveByJob = Object.fromEntries((t.running||[]).map(r => [r.job_id, r]));
+    const jobs = (h.active_jobs||[]).map(j => {
+      const live = liveByJob[j.job_id];
+      const liveTxt = live ? `${fmtGB(live.tree_rss_mb)}GB rss${live.vram_mb ? ' · ' + fmtGB(live.vram_mb) + 'GB vram' : ''}`
+                           : `${fmtGB(j.reservation?.ram_mb||0)}GB reserved`;
+      return `<tr><td>${esc(j.experiment)}</td><td class="muted">${esc(j.state)} · ${liveTxt}</td></tr>`;
+    }).join('');
+    // admission breakdown: what the scheduler can actually still grant on this host
+    const committed = h.committed_ram_mb || 0;
+    const marginMb = adm.ram_margin_mb || 0;
+    const baseline = Math.max(0, used - (t.running||[]).reduce((s,r) => s + (r.tree_rss_mb||0), 0));
+    const availMb = Math.max(0, h.ram_total_mb - baseline - committed - marginMb);
+    const admLine = `admits ${fmtGB(availMb)}GB · margin ${fmtGB(marginMb)}GB` +
+      (adm.max_concurrent != null ? ` · max ${adm.max_concurrent} jobs` : '');
+    // out-of-band baseline breakdown: which NON-mrun processes hold the host's RAM
+    const externals = (t.top_external||[]);
+    const extLine = externals.length
+      ? `<div class="muted" style="font-size:12px" title="${esc(externals.map(p => `${p.name}[${p.pid}] ${fmtGB(p.rss_mb)}GB`).join(', '))}">` +
+        `out-of-band: ${externals.slice(0,3).map(p => `${esc(p.name)} ${fmtGB(p.rss_mb)}GB`).join(' · ')}` +
+        `${externals.length > 3 ? ` · +${externals.length-3} more` : ''}</div>`
+      : '';
+    return `<div class="card">
+      <h2>${esc(h.name)} ${pressure}${disabled}
+        <button style="float:right" data-edit-limits="${esc(h.name)}">limits</button></h2>
+      ${bar('cpu', t.cpu_pct, cpuTxt)}
+      ${bar('ram', 100*used/h.ram_total_mb,
+            `${fmtGB(used)} / ${fmtGB(h.ram_total_mb)}GB · ${fmtGB(h.committed_ram_mb||0)} committed`,
+            {commitPct: 100*(h.committed_ram_mb||0)/h.ram_total_mb})}
+      ${vramBar}
+      <div class="muted" style="font-size:12px">${admLine}</div>
+      ${extLine}
+      <div class="muted" style="font-size:12px">seen ${ago(t.ts)}${(t.swap_used_mb||0) > 256 ? ` · swap ${fmtGB(t.swap_used_mb)}GB` : ''}</div>
+      ${limitsOpen.has(h.name) ? limitsFormHtml(h) : ''}
+      <table>${jobs}${disks}</table>
+      <div class="muted" title="${esc(models.join(', '))}">warm models: ${models.length}</div>
+    </div>`;
+  }).join('');
+}
+
+function openLimits(name) { limitsOpen.add(name); refreshHosts(true); }
+function closeLimits(name) { limitsOpen.delete(name); refreshHosts(true); }
+
+async function saveLimits(name) {
+  const form = document.querySelector(`[data-limits-form="${CSS.escape(name)}"]`);
+  if (!form) return;
+  const body = {};
+  for (const input of form.querySelectorAll('[data-lk]')) {
+    const k = input.dataset.lk;
+    if (input.type === 'checkbox') body[k] = input.checked;
+    else body[k] = input.value === '' ? null : Number(input.value);
+  }
+  const r = await api(`/api/hosts/${encodeURIComponent(name)}/limits`, {
+    method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body),
+  });
+  if (!r.ok) { alert(`limits update failed: ${r.status} ${await r.text()}`); return; }
+  limitsOpen.delete(name);
+  refreshHosts(); refreshQueue();
+}
+
+async function removeHost(name) {
+  if (!confirm(`Forget host "${name}"? (registration, telemetry and warm-model rows — job history stays)`)) return;
+  const r = await api(`/api/hosts/${encodeURIComponent(name)}`, {method:'DELETE'});
+  if (!r.ok) alert(`remove failed: ${r.status} ${await r.text()}`);
+  refreshHosts();
+}
+
+// ------------------------------------------------------------------ settings chips
+function planChips(j) {
+  const p = j.plan || {};
+  const chips = [];
+  const model = (j.config||{}).model;
+  if (model) chips.push(esc(String(model)));
+  if (p.backend) chips.push(p.backend === 'paged' ? 'paged·qstore' : esc(String(p.backend)));
+  if (p.device) chips.push(`<span class="chip ${p.device==='cuda'?'cuda':''}">${esc(String(p.device))}</span>`);
+  if (p.dtype) chips.push(esc(String(p.dtype).replace('float32','fp32').replace('bfloat16','bf16').replace('float16','fp16')));
+  if (p.max_batch) chips.push(`b${esc(String(p.max_batch))}`);
+  if (p.threads) chips.push(`${esc(String(p.threads))}t`);
+  if (!p.backend && (j.needs||{}).cuda) chips.push('<span class="chip cuda">cuda</span>');
+  return chips.map(c => c.startsWith('<span') ? c : `<span class="chip">${c}</span>`).join('');
+}
+
+// ------------------------------------------------------------------ queue (drag to re-prioritize)
+let dragId = null;
+let reorderInflight = false;   // drop happened, priority POSTs not yet committed
+
+async function refreshQueue() {
+  if (dragId || reorderInflight) return;   // don't repaint mid-drag / mid-commit
+  const jobs = await (await api('/api/jobs?state=queued')).json();  // server orders: priority DESC, created ASC
+  if (dragId || reorderInflight) return;   // drag started while the fetch was in flight — repaint would orphan the drag source
+  $('#queueEmpty').style.display = jobs.length ? 'none' : '';
+  $('#queueHint').style.display = jobs.length > 1 ? '' : 'none';
+  $('#queue').innerHTML = jobs.map(j => {
+    const sd = j.status_detail || '';
+    const badge = sd.startsWith('unschedulable:')
+      ? `<span class="bad" title="${esc(sd)}">unschedulable</span>`
+      : sd.startsWith('waiting:') ? `<span class="warn" title="${esc(sd)}">waiting</span>` : '';
+    return `
+    <li draggable="true" data-id="${esc(j.job_id)}">
+      <span class="grip">⣿</span>
+      <a href="#" data-tail="${esc(j.job_id)}">${esc(j.job_id.slice(-6))}</a>
+      <span>${esc(j.experiment)}</span>
+      <span style="flex:1">${planChips(j)} ${badge}</span>
+      <span class="muted">p${j.priority||0} · ${ago(j.created_ts)}</span>
+      <button data-cancel="${esc(j.job_id)}">cancel</button>
+    </li>`;
+  }).join('');
+  for (const li of document.querySelectorAll('#queue li')) {
+    li.addEventListener('dragstart', e => { dragId = li.dataset.id; li.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+    li.addEventListener('dragover', e => { e.preventDefault(); li.classList.add('dropTarget'); });
+    li.addEventListener('dragleave', () => li.classList.remove('dropTarget'));
+    li.addEventListener('drop', async e => {
+      e.preventDefault(); li.classList.remove('dropTarget');
+      reorderInflight = true;   // dragend clears dragId before the POSTs settle
+      try { await dropOn(li); } catch (err) { alert('reorder failed: ' + err); }
+      finally { reorderInflight = false; }
+      dragId = null; refreshQueue();
+    });
+  }
+}
+// dragend can fire on a node the repaint removed (Chromium quirk) — a document-level
+// listener guarantees dragId is always released, or the queue would freeze forever
+document.addEventListener('dragend', () => {
+  dragId = null;
+  document.querySelectorAll('#queue li.dragging, #queue li.dropTarget')
+    .forEach(li => li.classList.remove('dragging', 'dropTarget'));
+});
+
+async function dropOn(target) {
+  const list = $('#queue');
+  const dragged = list.querySelector(`li[data-id="${CSS.escape(dragId)}"]`);
+  if (!dragged || dragged === target) return;
+  const items = [...list.querySelectorAll('li')];
+  // insert before/after depending on direction (standard list-reorder semantics)
+  if (items.indexOf(dragged) < items.indexOf(target)) target.after(dragged); else target.before(dragged);
+  const ordered = [...list.querySelectorAll('li')].map(li => li.dataset.id);
+  // top-down from +100 so collisions (clamped ties) only ever happen at the BOTTOM of
+  // a >200-deep queue, never among the rows the user just ordered
+  const posts = ordered.map((id, i) =>
+    api(`/api/jobs/${encodeURIComponent(id)}/priority`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({priority: Math.max(-100, 100 - i)}),
+    }));
+  const results = await Promise.all(posts);
+  const failed = results.filter(r => !r.ok).length;
+  if (failed) alert(`${failed} priority update(s) failed (job may have started)`);
+}
+
+// ------------------------------------------------------------------ jobs table
+async function refreshJobs() {
+  const st = $('#stateFilter').value;
+  const jobs = await (await api('/api/jobs' + (st ? '?state='+st : ''))).json();
+  jobs.sort((a,b) => (b.created_ts||0)-(a.created_ts||0));
+  const rows = jobs.slice(0, 40).map(j => {
+    const cls = {succeeded:'ok', failed:'bad', killed_ram:'bad', killed_vram:'bad', lost:'bad',
+                 running:'warn', assigned:'warn'}[j.state] || 'muted';
+    const cancel = ['queued','assigned','preparing','running'].includes(j.state)
+      ? `<button data-cancel="${esc(j.job_id)}">cancel</button>` : '';
+    const restart = TERMINAL.has(j.state) && j.payload_kind !== 'external'
+      ? `<button data-restart="${esc(j.job_id)}">restart</button>` : '';
+    const actions = [cancel, restart].filter(Boolean).join(' ');
+    const isOpen = expanded.has(j.job_id);
+    const main = `<tr>
+      <td><span class="expander" data-toggle="${esc(j.job_id)}">${isOpen ? '▾' : '▸'}</span>
+          <a href="#" data-tail="${esc(j.job_id)}">${esc(j.job_id.slice(-6))}</a></td>
+      <td>${esc(j.experiment)}</td><td class="${cls}">${esc(j.state)}</td>
+      <td class="muted">${esc(j.assigned_host||'')}</td>
+      <td>${planChips(j)}</td>
+      <td class="muted">${fmtGB(j.reservation?.ram_mb||0)}GB ${esc(j.reservation?.source||'')}</td>
+      <td class="muted">${ago(j.created_ts)}</td><td>${actions}</td></tr>`;
+    const detail = isOpen
+      ? `<tr><td colspan="8"><div class="detail">${detailHtml(j)}</div></td></tr>` : '';
+    return main + detail;
+  }).join('');
+  $('#jobs').innerHTML =
+    '<tr><th></th><th>experiment</th><th>state</th><th>host</th><th>settings</th><th>reservation</th><th>age</th><th></th></tr>' + rows;
+}
+
+function detailHtml(j) {
+  const secs = [];
+  if (j.plan) secs.push(`<b>plan</b> (scheduler-stamped, drives execution)<pre>${esc(JSON.stringify(j.plan, null, 1))}</pre>`);
+  if (j.config && Object.keys(j.config).length) secs.push(`<b>config</b><pre>${esc(JSON.stringify(j.config, null, 1))}</pre>`);
+  if (j.result) secs.push(`<b>result</b><pre>${esc(JSON.stringify(j.result, null, 1))}</pre>`);
+  if (j.status_detail) secs.push(`<b>detail</b> <span class="bad">${esc(j.status_detail)}</span>`);
+  if (j.cmd?.length) secs.push(`<b>cmd</b><pre>${esc(j.cmd.join(' '))}</pre>`);
+  return secs.join('');
+}
+
+function toggleDetail(id) {
+  if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
+  refreshJobs();   // its expanded-row loop triggers fetchLinks when needed
+}
+
+async function cancelJob(id) {
+  await api(`/api/jobs/${encodeURIComponent(id)}/cancel`, {method:'POST'});
+  refreshJobs(); refreshQueue(); refreshControl();
+}
+
+async function restartJob(id) {
+  if (!confirm(`Restart job "${id}" as a new queued job?`)) return;
+  const r = await api(`/api/jobs/${encodeURIComponent(id)}/restart`, {method:'POST'});
+  if (!r.ok) { alert(`restart failed: ${r.status} ${await r.text()}`); return; }
+  const out = await r.json();
+  expanded.add(out.job_id);
+  await Promise.all([refreshJobs(), refreshQueue(), refreshControl()]);
+}
+
+// event delegation: ids/hostnames never travel through inline JS strings, so a quote in
+// an experiment or host name can't break out of a handler
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tail],[data-cancel],[data-restart],[data-toggle],[data-remove-host],[data-drain-toggle],[data-edit-limits],[data-save-limits],[data-close-limits]');
+  if (!t) return;
+  if (t.dataset.tail !== undefined) { e.preventDefault(); tail(t.dataset.tail); }
+  else if (t.dataset.cancel !== undefined) cancelJob(t.dataset.cancel);
+  else if (t.dataset.restart !== undefined) restartJob(t.dataset.restart);
+  else if (t.dataset.toggle !== undefined) toggleDetail(t.dataset.toggle);
+  else if (t.dataset.removeHost !== undefined) removeHost(t.dataset.removeHost);
+  else if (t.dataset.drainToggle !== undefined) setDrain(t.dataset.drainToggle === '1');
+  else if (t.dataset.editLimits !== undefined) openLimits(t.dataset.editLimits);
+  else if (t.dataset.saveLimits !== undefined) saveLimits(t.dataset.saveLimits);
+  else if (t.dataset.closeLimits !== undefined) closeLimits(t.dataset.closeLimits);
+});
+
+// ------------------------------------------------------------------ log tail
+function tail(id) { logJob = id; logOffset = 0; $('#log').textContent = ''; $('#logTitle').textContent = 'log: ' + id; pollLog(); }
+async function pollLog() {
+  if (!logJob || logInflight) return;
+  logInflight = true;
+  const id = logJob, offset = logOffset;
+  try {
+    const r = await api(`/api/jobs/${encodeURIComponent(id)}/logs?offset=${offset}`);
+    const text = await r.text();
+    if (id !== logJob || offset !== logOffset) return;  // user switched jobs mid-flight
+    if (text) { $('#log').textContent += text; $('#log').scrollTop = $('#log').scrollHeight; }
+    logOffset = parseInt(r.headers.get('X-Next-Offset') || logOffset);
+  } finally { logInflight = false; }
+}
+
+async function tick() {
+  try { await Promise.all([refreshControl(), refreshHosts(), refreshJobs(), refreshQueue(), pollLog()]);
+    $('#updated').textContent = 'updated ' + new Date().toLocaleTimeString();
+  } catch (e) { $('#updated').textContent = 'update failed: ' + e; }
+}
+$('#stateFilter').onchange = refreshJobs;
+ tick(); setInterval(tick, 3000);
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+mrun-pub
+Copyright 2026 Jake Holl
+
+Derived from the author's mrun execution stack, with source provenance recorded in
+SOURCE-SNAPSHOT.json. Standalone paged LoRA runtime primitives were reconciled with
+the author's current Winder implementation. Analysis semantics and service
+integrations are excluded.
+
+The DeepSeek V4 streaming adapter describes its source as an operation-for-operation
+port of Hugging Face Transformers modeling_deepseek_v4.py (Apache License 2.0).
+Transformers: Copyright the Hugging Face team and its model contributors.
+Model checkpoints and runtime-generated source artifacts retain their own licenses;
+they are not bundled in this distribution.

@@ -43,12 +43,16 @@ chains. See the [compact qualification record](../benchmarks/public_stack_speed/
 
 Version 0.1.2 adds Python 3.10 cleanup-note compatibility after Linux CI exposed
 an unavailable `BaseException.add_note` call. Byte-parity test oracles now bind
-the same CPU convolution backend on both sides; exact assertions remain intact.
+the same projection/tile geometry on both sides; exact assertions remain intact.
 The history-calibration fixture waits through an RSS sampling tick. These changes
 preserve runtime kernels, numerical model programs and admission guards. The
 hardware reports remain bound to their original sealed 0.1.1 payloads.
 The selected-head screening oracle projects the declared aligned head block
 before selecting columns, preserving its exact full-vocabulary parity contract.
+The external Transformers Mamba oracle uses a two-layer scalar reference organism
+with nonzero, varying outputs. Dense source-to-IR replay remains covered separately;
+dense cross-Transformers hidden-state bytes are not certified across CPU kernels.
+The unused ragged-cache row has finite key/value sentinels and exact preservation checks.
 The 0.1.2 release archives and isolated installed-server execution also pass;
 the compatibility helper was checked with an actual Python 3.10 interpreter.
 

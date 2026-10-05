@@ -33,20 +33,23 @@ def test_dirty_tiled_decode_reuses_untouched_output() -> None:
     new_latents[:, :, 2, 2] += 0.75
     changed = torch.zeros(16, 16, dtype=torch.bool)
     changed[2, 2] = True
-    # Full and expanded-tile shapes must use the same CPU oracle backend;
-    # oneDNN's shape-specific reduction order is not a byte-parity oracle.
-    with torch.backends.mkldnn.flags(enabled=False):
-        previous = decoder(old_latents)
-        expected = decoder(new_latents)
-        dirty = decode_dirty_tiled(
-            decoder,
-            new_latents,
-            previous,
-            changed,
-            tile_height=8,
-            tile_width=8,
-            halo=1,
-        )
+    # Compare the same tile geometry: a full-frame convolution can select a
+    # different CPU reduction kernel. The full-decode test covers that boundary.
+    previous = decode_tiled(
+        decoder, old_latents, tile_height=8, tile_width=8, halo=1,
+    ).output
+    expected = decode_tiled(
+        decoder, new_latents, tile_height=8, tile_width=8, halo=1,
+    ).output
+    dirty = decode_dirty_tiled(
+        decoder,
+        new_latents,
+        previous,
+        changed,
+        tile_height=8,
+        tile_width=8,
+        halo=1,
+    )
     assert torch.equal(dirty.output, expected)
     untouched = torch.ones_like(changed)
     untouched[:8, :8] = False

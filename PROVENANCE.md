@@ -33,11 +33,14 @@ mrun, MDB and Saturn packages. See [measured speeds](docs/SPEEDS.md) and the
 input extraction hashes and earlier qualification records are unchanged.
 
 Version 0.1.2 preserves cleanup exception notes on Python 3.10. Linux CI also
-exposed shape-dependent oneDNN rounding in two byte-parity test oracles and an
+exposed shape-dependent CPU rounding in byte-parity test oracles and an
 instantaneous history-calibration process that could miss every RSS sample.
-Tests now bind one CPU oracle backend and keep the calibration process alive
+Tests now bind matching projection/tile geometry and keep the calibration process alive
 through a sampling tick. Exact assertions, page quarantine, runtime kernels,
 numerical model programs and the immutable 0.1.1 hardware evidence are preserved.
 The selected-head screening test now uses the declared aligned projection block
 before selecting columns, matching its existing full-vocabulary contract. CI
 collects every supported interpreter's result even if another lane fails.
+The external Transformers Mamba oracle uses a nonzero scalar reference organism
+for portable exact comparison; the dense source-to-IR replay fixture is retained.
+Unused ragged-cache test rows hold finite sentinels and require exact preservation.

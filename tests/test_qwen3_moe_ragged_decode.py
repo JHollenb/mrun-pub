@@ -355,6 +355,10 @@ def test_qwen_ragged_decode_matches_independent_scalar_rows_and_keeps_length_pro
     backend = _ZeroExperts()
     runtime = Qwen3MoeDecodeRuntime(_tiny_skeleton(), backend)
     arena = runtime.new_cache(batch_size=4, capacity=8)
+    # Unused torch.empty storage may contain NaNs. Give the untouched row a
+    # finite sentinel so this test verifies preservation of declared contents.
+    arena.layers[0].key[0].fill_(123.25)
+    arena.layers[0].value[0].fill_(-456.5)
     prompts = (torch.tensor([[1, 4]]), torch.tensor([[2, 5, 7, 3]]))
     slots = (3, 1)
     scalar_caches = []
@@ -378,6 +382,7 @@ def test_qwen_ragged_decode_matches_independent_scalar_rows_and_keeps_length_pro
         expected_routes.append(result.routes)
 
     untouched = arena.layers[0].key[0].clone()
+    untouched_value = arena.layers[0].value[0].clone()
     backend.calls.clear()
     original_scalar_length = arena.length
     evidence = runtime.forward_decode_rows(
@@ -407,7 +412,8 @@ def test_qwen_ragged_decode_matches_independent_scalar_rows_and_keeps_length_pro
         )
     assert arena.length == original_scalar_length == 0
     assert backend.calls == [(0, (2, 8))], "all logical rows must share one MoE traversal"
-    torch.testing.assert_close(arena.layers[0].key[0], untouched)
+    assert torch.equal(arena.layers[0].key[0], untouched)
+    assert torch.equal(arena.layers[0].value[0], untouched_value)
     for slot, prompt, scalar in zip(slots, prompts, scalar_caches, strict=True):
         position = int(prompt.shape[1])
         torch.testing.assert_close(

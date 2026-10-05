@@ -58,6 +58,10 @@ def _weights(
     use_bias: bool = False,
     use_conv_bias: bool = True,
     time_step_rank: int = 2,
+    hidden_size: int = 8,
+    intermediate_size: int = 16,
+    state_size: int = 4,
+    conv_kernel: int = 3,
 ) -> dict[str, torch.Tensor]:
     generator = torch.Generator().manual_seed(271828)
 
@@ -65,32 +69,32 @@ def _weights(
         return torch.randn(shape, generator=generator, dtype=torch.float32) * 0.04
 
     output: dict[str, torch.Tensor] = {
-        "backbone.embeddings.weight": random(16, 8),
-        "backbone.norm_f.weight": torch.linspace(0.9, 1.1, 8, dtype=torch.float32),
+        "backbone.embeddings.weight": random(16, hidden_size),
+        "backbone.norm_f.weight": torch.linspace(0.9, 1.1, hidden_size, dtype=torch.float32),
     }
     if not tied:
-        output["lm_head.weight"] = random(16, 8)
+        output["lm_head.weight"] = random(16, hidden_size)
     for layer in range(2):
         prefix = f"backbone.layers.{layer}"
         mixer = f"{prefix}.mixer"
         output.update(
             {
-                f"{prefix}.norm.weight": torch.linspace(0.95, 1.05, 8, dtype=torch.float32),
-                f"{mixer}.in_proj.weight": random(32, 8),
-                f"{mixer}.conv1d.weight": random(16, 1, 3),
-                f"{mixer}.x_proj.weight": random(time_step_rank + 8, 16),
-                f"{mixer}.dt_proj.weight": random(16, time_step_rank),
-                f"{mixer}.dt_proj.bias": random(16),
-                f"{mixer}.A_log": random(16, 4),
-                f"{mixer}.D": random(16),
-                f"{mixer}.out_proj.weight": random(8, 16),
+                f"{prefix}.norm.weight": torch.linspace(0.95, 1.05, hidden_size, dtype=torch.float32),
+                f"{mixer}.in_proj.weight": random(2 * intermediate_size, hidden_size),
+                f"{mixer}.conv1d.weight": random(intermediate_size, 1, conv_kernel),
+                f"{mixer}.x_proj.weight": random(time_step_rank + 2 * state_size, intermediate_size),
+                f"{mixer}.dt_proj.weight": random(intermediate_size, time_step_rank),
+                f"{mixer}.dt_proj.bias": random(intermediate_size),
+                f"{mixer}.A_log": random(intermediate_size, state_size),
+                f"{mixer}.D": random(intermediate_size),
+                f"{mixer}.out_proj.weight": random(hidden_size, intermediate_size),
             }
         )
         if use_bias:
-            output[f"{mixer}.in_proj.bias"] = random(32)
-            output[f"{mixer}.out_proj.bias"] = random(8)
+            output[f"{mixer}.in_proj.bias"] = random(2 * intermediate_size)
+            output[f"{mixer}.out_proj.bias"] = random(hidden_size)
         if use_conv_bias:
-            output[f"{mixer}.conv1d.bias"] = random(16)
+            output[f"{mixer}.conv1d.bias"] = random(intermediate_size)
     return output
 
 
@@ -107,15 +111,19 @@ def _write_model(root: Path, **config_updates: object) -> None:
             use_bias=bool(config["use_bias"]),
             use_conv_bias=bool(config["use_conv_bias"]),
             time_step_rank=time_step_rank,
+            hidden_size=int(config["hidden_size"]),
+            intermediate_size=int(config["intermediate_size"]),
+            state_size=int(config["state_size"]),
+            conv_kernel=int(config["conv_kernel"]),
         ),
         root / "model.safetensors",
         metadata={"format": "pt"},
     )
 
 
-def _build_reference(tmp_path: Path):
+def _build_reference(tmp_path: Path, **config_updates: object):
     source = tmp_path / "mamba"
-    _write_model(source)
+    _write_model(source, **config_updates)
     built = build_component_artifact(source, tmp_path / "artifacts")
     return lower_component_artifact_to_reference(built.path)
 
@@ -159,32 +167,40 @@ def test_mamba_reference_executes_exact_g8_without_a_positional_ceiling(
     assert certification.source_logits_fingerprints == (certification.ir_logits_fingerprints)
 
 
-def test_mamba_reference_matches_transformers_full_sequence(tmp_path: Path) -> None:
+def test_mamba_scalar_reference_matches_transformers_full_sequence(tmp_path: Path) -> None:
     transformers = pytest.importorskip("transformers")
     mamba_config = getattr(transformers, "MambaConfig", None)
     mamba_model = getattr(transformers, "MambaForCausalLM", None)
     if mamba_config is None or mamba_model is None:
         pytest.skip("installed Transformers does not expose Mamba")
 
-    executable = _build_reference(tmp_path)
+    # A scalar reference organism removes layout-dependent vector reductions
+    # from this external oracle. Dense source-to-IR replay is checked above.
+    executable = _build_reference(
+        tmp_path, hidden_size=1, intermediate_size=1, expand=1,
+        state_size=1, time_step_rank=1, conv_kernel=1,
+    )
     config = mamba_config(
         vocab_size=16,
-        hidden_size=8,
-        state_size=4,
+        hidden_size=1,
+        state_size=1,
         num_hidden_layers=2,
         layer_norm_epsilon=1e-5,
-        expand=2,
-        conv_kernel=3,
+        expand=1,
+        conv_kernel=1,
         use_bias=False,
         use_conv_bias=True,
         residual_in_fp32=True,
-        time_step_rank=2,
+        time_step_rank=1,
         use_cache=False,
         use_associative_scan=False,
         tie_word_embeddings=True,
     )
     model = mamba_model(config)
-    source_weights = _weights()
+    source_weights = _weights(
+        hidden_size=1, intermediate_size=1, state_size=1,
+        time_step_rank=1, conv_kernel=1,
+    )
     source_weights["lm_head.weight"] = source_weights["backbone.embeddings.weight"]
     incompatible = model.load_state_dict(source_weights, strict=False)
     assert incompatible.missing_keys == []
@@ -193,9 +209,7 @@ def test_mamba_reference_matches_transformers_full_sequence(tmp_path: Path) -> N
     model.eval()
     tokens = torch.tensor([[1, 4, 7, 2, 9], [3, 5, 8, 13, 0]], dtype=torch.int64)
 
-    # Compare one CPU oracle backend: oneDNN may choose a different reduction
-    # order for the source and reference convolution layouts on Linux.
-    with torch.inference_mode(), torch.backends.mkldnn.flags(enabled=False):
+    with torch.inference_mode():
         expected = model(
             input_ids=tokens,
             use_cache=False,
@@ -204,6 +218,8 @@ def test_mamba_reference_matches_transformers_full_sequence(tmp_path: Path) -> N
         )
         actual = executable.forward(tokens)
 
+    assert torch.count_nonzero(actual.hidden_states) == tokens.numel()
+    assert torch.unique(actual.hidden_states).numel() > 1
     torch.testing.assert_close(actual.logits, expected.logits, rtol=0.0, atol=0.0)
     torch.testing.assert_close(
         actual.hidden_states,
